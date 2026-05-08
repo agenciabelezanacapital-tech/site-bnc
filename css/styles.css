@@ -460,7 +460,7 @@ section { padding: 5rem 0; }
 .dor-icon svg { color: var(--gold); }
 .dor-card h3 { margin-bottom: 0.75rem; color: var(--text-primary); }
 
-@media (min-width: 768px) { .dores-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) { .dores-grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* ══════════════════════════════════════════════════════════════
    CASES
