@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- OpenAI Ads Measurement Pixel -->
+  <script>
+    (function (w, d, s, u) {
+      if (w.oaiq) return;
+      var q = function () {
+        q.q.push(arguments);
+      };
+      q.q = [];
+      w.oaiq = q;
+      var js = d.createElement(s);
+      js.async = true;
+      js.src = u;
+      var f = d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(js, f);
+    })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+    oaiq("init", {
+      pixelId: "Ev5QxBim4MAQaGt55STSgc",
+    });
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -213,6 +234,11 @@
   <!-- ── Função de conversão WhatsApp ─────────────────────── -->
   <script>
   function gtag_report_conversion(url) {
+    if (typeof window.oaiq === 'function') {
+      oaiq("measure", "lead_created", {
+        type: "customer_action",
+      });
+    }
     var callback = function () {
       if (typeof(url) != 'undefined') {
         window.location = url;
