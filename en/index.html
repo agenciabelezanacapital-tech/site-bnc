@@ -20,6 +20,17 @@
     oaiq("init", {
       pixelId: "Ev5QxBim4MAQaGt55STSgc",
     });
+
+    oaiq("measure", "page_viewed", {
+      type: "contents",
+      contents: [
+        {
+          id: "home-en",
+          name: "Beleza na Capital",
+          content_type: "page",
+        },
+      ],
+    });
   </script>
 
   <meta charset="UTF-8" />
@@ -233,11 +244,13 @@
   <!-- ── WhatsApp conversion function ─────────────────────── -->
   <script>
   function gtag_report_conversion(url) {
-    if (typeof window.oaiq === 'function') {
-      oaiq("measure", "lead_created", {
-        type: "customer_action",
-      });
-    }
+    try {
+      if (typeof window.oaiq === 'function') {
+        oaiq("measure", "lead_created", {
+          type: "customer_action",
+        });
+      }
+    } catch (_error) {}
     var callback = function () {
       if (typeof(url) != 'undefined') {
         window.location = url;
@@ -1110,7 +1123,7 @@
 
     <div class="footer-bottom">
       <p>© 2025 Beleza na Capital. All rights reserved.</p>
-      <p>Marketing for Beauty Salons | <a href="https://wa.me/556196112266" style="color:var(--gold);">+55 (61) 9611-2266</a></p>
+      <p>Marketing for Beauty Salons | <a href="https://wa.me/556196112266" style="color:var(--gold);" onclick="return gtag_report_conversion('https://wa.me/556196112266');">+55 (61) 9611-2266</a></p>
     </div>
 
   </div>
