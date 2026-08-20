@@ -49,6 +49,8 @@
   /* ── Intersection Observer — scroll animations ─────────── */
   const animEls = document.querySelectorAll('.fade-in-up, .fade-in');
   if ('IntersectionObserver' in window && animEls.length) {
+    /* Só entra no estado oculto pré-animação quando o JS realmente roda */
+    animEls.forEach(el => el.classList.add('pre-animate'));
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
