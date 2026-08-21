@@ -44,7 +44,13 @@
 
       /* O topo deve responder imediatamente, mesmo em páginas longas. */
       if (href === '#inicio') {
-        window.scrollTo({ top: 0, behavior: 'auto' });
+        const root = document.documentElement;
+        const previousScrollBehavior = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        window.requestAnimationFrame(() => {
+          root.style.scrollBehavior = previousScrollBehavior;
+        });
         return;
       }
 
