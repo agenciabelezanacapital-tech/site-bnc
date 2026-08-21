@@ -36,10 +36,18 @@
   /* ── Smooth scroll for anchor links ───────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
+      const href = this.getAttribute('href');
+      const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
       closeMobile();
+
+      /* O topo deve responder imediatamente, mesmo em páginas longas. */
+      if (href === '#inicio') {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        return;
+      }
+
       const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 72;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
