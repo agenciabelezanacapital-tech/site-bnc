@@ -618,6 +618,28 @@
   font-size: 1.08rem;
 }
 
+.article-feature-image {
+  margin: 2.2rem 0 2.8rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+}
+
+.article-feature-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center 48%;
+}
+
+.article-feature-image figcaption {
+  padding: 0.8rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
 .article-content h2 {
   margin: 3.3rem 0 1rem;
   color: var(--text-primary);
