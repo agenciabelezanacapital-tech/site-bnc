@@ -1,13 +1,19 @@
 {
   "slug": "seu-salao-aparece-no-google",
+  "publication_key": "seu-salao-aparece-no-google-carrossel-v1",
   "title": "Seu salão aparece no Google? 7 indicadores para medir a presença local",
   "url": "https://www.belezanacapital.com.br/blog/seu-salao-aparece-no-google/",
-  "image_url": "https://www.belezanacapital.com.br/img/social-seu-salao-aparece-google.jpg",
+  "image_url": "https://www.belezanacapital.com.br/img/carrossel-seu-salao-google-01.jpg",
+  "image_urls": [
+    "https://www.belezanacapital.com.br/img/carrossel-seu-salao-google-01.jpg",
+    "https://www.belezanacapital.com.br/img/carrossel-seu-salao-google-02.jpg",
+    "https://www.belezanacapital.com.br/img/carrossel-seu-salao-google-03.jpg",
+    "https://www.belezanacapital.com.br/img/carrossel-seu-salao-google-04.jpg"
+  ],
   "facebook": {
-    "message": "Seu salão pode aparecer quando alguém pesquisa o nome da empresa e continuar invisível nas buscas que geram novos clientes. O que importa é saber se ele aparece por serviços, em diferentes pontos da região, e se essa visibilidade gera ligações, rotas, cliques e agendamentos.\n\nNo novo artigo do Blog BNC, reunimos 7 indicadores para medir a presença do salão no Google e identificar onde estão as maiores oportunidades.\n\nLeia o artigo completo: https://www.belezanacapital.com.br/blog/seu-salao-aparece-no-google/"
+    "message": "Seu salão aparece no Google nas buscas que realmente geram clientes?\n\nPesquisar apenas o nome do próprio salão pode dar uma falsa sensação de visibilidade. O que importa é entender se você aparece por serviços, em diferentes pontos da região, e se essa presença gera ligações, rotas, cliques e agendamentos.\n\nNeste carrossel, reunimos 7 indicadores para medir sua presença local e identificar onde estão as maiores oportunidades.\n\nLeia o artigo completo: https://www.belezanacapital.com.br/blog/seu-salao-aparece-no-google/\n\nQuer descobrir como o seu salão está posicionado no Google? Fale com a BNC."
   },
-
   "instagram": {
-    "caption": "Seu salão aparece no Google quando uma cliente procura por mechas, corte ou salão de beleza na sua região?\n\nPesquisar apenas pelo nome do salão não responde essa pergunta. A visibilidade local precisa ser analisada por serviço, bairro, posição no mapa e ações geradas pelo perfil.\n\nNo novo artigo do Blog BNC, mostramos os 7 indicadores que revelam se o seu salão está realmente sendo encontrado no momento da busca.\n\nLeia no link da bio.\n\n#MarketingParaSalao #SEOLocal #GoogleMeuNegocio #SalaoDeBeleza #BelezaNaCapital"
+    "caption": "Seu salão aparece no Google nas buscas que realmente geram clientes?\n\nPesquisar apenas o nome do próprio salão pode dar uma falsa sensação de visibilidade. O que importa é entender se você aparece por serviços, em diferentes pontos da região, e se essa presença gera ligações, rotas, cliques e agendamentos.\n\nNeste carrossel, reunimos 7 indicadores para medir sua presença local e identificar onde estão as maiores oportunidades.\n\nSalve este conteúdo e leia o artigo completo no link da bio.\n\nQuer descobrir como o seu salão está posicionado no Google? Fale com a BNC.\n\n#MarketingParaSalao #SEOLocal #GoogleMeuNegocio #GestaoDeSalao #BelezaNaCapital"
   }
 }

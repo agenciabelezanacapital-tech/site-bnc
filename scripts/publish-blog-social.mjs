@@ -86,14 +86,28 @@ function validateMetadata(raw, sourceFile) {
 
   const title = requireText(raw.title, "title", 140);
   const articleUrl = new URL(requireText(raw.url, "url", 300));
-  const imageUrl = new URL(requireText(raw.image_url, "image_url", 300));
   const siteOrigin = new URL(SITE_BASE_URL).origin;
 
   if (articleUrl.protocol !== "https:" || articleUrl.origin !== siteOrigin || articleUrl.pathname !== `/blog/${slug}/`) {
     fail("A URL do artigo não corresponde ao domínio e ao slug esperados.");
   }
-  if (imageUrl.protocol !== "https:" || imageUrl.origin !== siteOrigin || !/\.jpe?g$/i.test(imageUrl.pathname)) {
-    fail("A imagem do Instagram precisa ser um JPEG público no domínio do site.");
+  const imageCandidates = Array.isArray(raw.image_urls) && raw.image_urls.length
+    ? raw.image_urls
+    : [raw.image_url];
+  if (imageCandidates.length > 10) fail("O carrossel pode ter no máximo 10 imagens.");
+  const imageUrls = imageCandidates.map((candidate, index) => {
+    const imageUrl = new URL(requireText(candidate, `image_urls[${index}]`, 300));
+    if (imageUrl.protocol !== "https:" || imageUrl.origin !== siteOrigin || !/\.jpe?g$/i.test(imageUrl.pathname)) {
+      fail("As imagens do Instagram precisam ser JPEGs públicos no domínio do site.");
+    }
+    return imageUrl.toString();
+  });
+
+  const publicationKey = typeof raw.publication_key === "string" && raw.publication_key.trim()
+    ? raw.publication_key.trim()
+    : slug;
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(publicationKey)) {
+    fail("A chave de publicação deve conter apenas letras minúsculas, números e hífens.");
   }
 
   const facebookMessage = requireText(raw.facebook?.message, "facebook.message", 5000);
@@ -105,9 +119,11 @@ function validateMetadata(raw, sourceFile) {
 
   return {
     slug,
+    publicationKey,
     title,
     url: articleUrl.toString(),
-    imageUrl: imageUrl.toString(),
+    imageUrl: imageUrls[0],
+    imageUrls,
     facebookMessage,
     instagramCaption,
   };
@@ -219,21 +235,45 @@ function markAsPublished(tag) {
 }
 
 async function publishFacebook(metadata, assets) {
-  const tag = `social-facebook/${metadata.slug}`;
+  const tag = `social-facebook/${metadata.publicationKey}`;
   if (tagExists(tag)) {
     console.log(`Facebook já publicado para ${metadata.slug}.`);
     return;
   }
 
-  const result = await metaRequest(`${assets.pageId}/feed`, {
-    method: "POST",
-    token: assets.pageToken,
-    params: {
-      message: metadata.facebookMessage,
-      link: metadata.url,
-      published: true,
-    },
-  });
+  let result;
+  if (metadata.imageUrls.length > 1) {
+    const attachedMedia = [];
+    for (const imageUrl of metadata.imageUrls) {
+      const photo = await metaRequest(`${assets.pageId}/photos`, {
+        method: "POST",
+        token: assets.pageToken,
+        params: { url: imageUrl, published: false },
+      });
+      if (!photo.id) fail("A Meta não retornou o identificador de uma foto do carrossel do Facebook.");
+      attachedMedia.push({ media_fbid: photo.id });
+    }
+
+    const params = { message: metadata.facebookMessage, published: true };
+    attachedMedia.forEach((media, index) => {
+      params[`attached_media[${index}]`] = JSON.stringify(media);
+    });
+    result = await metaRequest(`${assets.pageId}/feed`, {
+      method: "POST",
+      token: assets.pageToken,
+      params,
+    });
+  } else {
+    result = await metaRequest(`${assets.pageId}/feed`, {
+      method: "POST",
+      token: assets.pageToken,
+      params: {
+        message: metadata.facebookMessage,
+        link: metadata.url,
+        published: true,
+      },
+    });
+  }
   if (!result.id) fail("A Meta não retornou o identificador da publicação no Facebook.");
 
   markAsPublished(tag);
@@ -257,20 +297,44 @@ async function waitForInstagramContainer(containerId, token) {
 }
 
 async function publishInstagram(metadata, assets) {
-  const tag = `social-instagram/${metadata.slug}`;
+  const tag = `social-instagram/${metadata.publicationKey}`;
   if (tagExists(tag)) {
     console.log(`Instagram já publicado para ${metadata.slug}.`);
     return;
   }
 
-  const container = await metaRequest(`${assets.instagramId}/media`, {
-    method: "POST",
-    token: assets.pageToken,
-    params: {
-      image_url: metadata.imageUrl,
-      caption: metadata.instagramCaption,
-    },
-  });
+  let container;
+  if (metadata.imageUrls.length > 1) {
+    const children = [];
+    for (const imageUrl of metadata.imageUrls) {
+      const child = await metaRequest(`${assets.instagramId}/media`, {
+        method: "POST",
+        token: assets.pageToken,
+        params: { image_url: imageUrl, is_carousel_item: true },
+      });
+      if (!child.id) fail("A Meta não retornou um item do carrossel do Instagram.");
+      await waitForInstagramContainer(child.id, assets.pageToken);
+      children.push(child.id);
+    }
+    container = await metaRequest(`${assets.instagramId}/media`, {
+      method: "POST",
+      token: assets.pageToken,
+      params: {
+        media_type: "CAROUSEL",
+        children: children.join(","),
+        caption: metadata.instagramCaption,
+      },
+    });
+  } else {
+    container = await metaRequest(`${assets.instagramId}/media`, {
+      method: "POST",
+      token: assets.pageToken,
+      params: {
+        image_url: metadata.imageUrl,
+        caption: metadata.instagramCaption,
+      },
+    });
+  }
   if (!container.id) fail("A Meta não retornou o contêiner de mídia do Instagram.");
 
   await waitForInstagramContainer(container.id, assets.pageToken);
@@ -323,7 +387,9 @@ async function main() {
     }
 
     await waitForPublicUrl(metadata.url, "text/html");
-    await waitForPublicUrl(metadata.imageUrl, "image/jpeg");
+    for (const imageUrl of metadata.imageUrls) {
+      await waitForPublicUrl(imageUrl, "image/jpeg");
+    }
     const assets = await discoverAssets();
     console.log(`Ativos conectados: ${assets.pageName} e Instagram profissional.`);
 
