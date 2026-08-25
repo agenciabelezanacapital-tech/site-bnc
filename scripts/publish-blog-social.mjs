@@ -10,6 +10,7 @@ const EXPECTED_PAGE_ID = process.env.META_PAGE_ID || "102252752160102";
 const TOKEN = process.env.META_SYSTEM_USER_TOKEN || "";
 const DRY_RUN = process.env.DRY_RUN === "true";
 const REPO_ROOT = process.cwd();
+const SUPPORTED_CHANNELS = new Set(["facebook", "instagram"]);
 
 const sleep = (milliseconds) => new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
 
@@ -110,9 +111,12 @@ function validateMetadata(raw, sourceFile) {
     fail("A chave de publicação deve conter apenas letras minúsculas, números e hífens.");
   }
 
-  const facebookMessage = requireText(raw.facebook?.message, "facebook.message", 5000);
-  const instagramCaption = requireText(raw.instagram?.caption, "instagram.caption", 2200);
-  const hashtagCount = (instagramCaption.match(/#[\p{L}\p{N}_]+/gu) || []).length;
+  if (!Array.isArray(raw.channels) || raw.channels.length === 0) fail("social.json precisa declarar channels explicitamente.");
+  const channels = [...new Set(raw.channels.map((channel) => String(channel).trim().toLowerCase()))];
+  if (channels.some((channel) => !SUPPORTED_CHANNELS.has(channel))) fail("Canal inválido em social.json.");
+  const facebookMessage = channels.includes("facebook") ? requireText(raw.facebook?.message, "facebook.message", 5000) : null;
+  const instagramCaption = channels.includes("instagram") ? requireText(raw.instagram?.caption, "instagram.caption", 2200) : null;
+  const hashtagCount = (instagramCaption?.match(/#[\p{L}\p{N}_]+/gu) || []).length;
   if (hashtagCount > 5) {
     fail("A legenda do Instagram deve usar no máximo 5 hashtags relevantes.");
   }
@@ -126,7 +130,16 @@ function validateMetadata(raw, sourceFile) {
     imageUrls,
     facebookMessage,
     instagramCaption,
+    channels,
   };
+}
+
+function selectedChannels(metadata) {
+  const requested = (process.env.SOCIAL_CHANNELS || "").split(",").map((channel) => channel.trim().toLowerCase()).filter(Boolean);
+  const channels = requested.length ? [...new Set(requested)] : metadata.channels;
+  if (channels.some((channel) => !SUPPORTED_CHANNELS.has(channel))) fail("SOCIAL_CHANNELS contém um canal inválido.");
+  if (channels.some((channel) => !metadata.channels.includes(channel))) fail("SOCIAL_CHANNELS pediu um canal não autorizado pelo social.json.");
+  return channels;
 }
 
 async function waitForPublicUrl(url, expectedContentType) {
@@ -355,6 +368,7 @@ function selfTest() {
     title: "Marketing para salão de beleza",
     url: `${SITE_BASE_URL}/blog/marketing-para-salao/`,
     image_url: `${SITE_BASE_URL}/img/social-blog-bnc.jpg`,
+    channels: ["facebook", "instagram"],
     facebook: { message: "Conteúdo prático para melhorar o marketing do seu salão e gerar oportunidades com mais consistência." },
     instagram: { caption: "Conteúdo prático para melhorar o marketing do seu salão. Leia o artigo completo no Blog BNC. #MarketingParaSalao" },
   };
@@ -379,6 +393,7 @@ async function main() {
 
   for (const file of files) {
     const metadata = validateMetadata(JSON.parse(readFileSync(file.absolute, "utf8")), file.relative);
+    const channels = selectedChannels(metadata);
     console.log(`Artigo validado: ${metadata.title}`);
 
     if (DRY_RUN) {
@@ -393,8 +408,8 @@ async function main() {
     const assets = await discoverAssets();
     console.log(`Ativos conectados: ${assets.pageName} e Instagram profissional.`);
 
-    await publishFacebook(metadata, assets);
-    await publishInstagram(metadata, assets);
+    if (channels.includes("facebook")) await publishFacebook(metadata, assets);
+    if (channels.includes("instagram")) await publishInstagram(metadata, assets);
   }
 }
 
