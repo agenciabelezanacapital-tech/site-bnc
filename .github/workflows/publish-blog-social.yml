@@ -17,6 +17,11 @@ on:
         required: true
         default: true
         type: boolean
+      channels:
+        description: "Canais explícitos: facebook, instagram ou facebook,instagram"
+        required: true
+        default: facebook
+        type: string
 
 permissions:
   contents: write
@@ -27,7 +32,7 @@ concurrency:
 
 jobs:
   publicar:
-    name: Facebook e Instagram
+    name: Publicar nos canais selecionados
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -51,5 +56,6 @@ jobs:
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
           SOCIAL_FILE: ${{ inputs.social_file }}
+          SOCIAL_CHANNELS: ${{ inputs.channels }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
         run: node scripts/publish-blog-social.mjs
