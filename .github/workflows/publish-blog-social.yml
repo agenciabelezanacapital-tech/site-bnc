@@ -1,4 +1,4 @@
-name: Publicar artigo nas redes sociais
+name: Publicar conteúdo nas redes sociais
 
 on:
   push:
@@ -6,10 +6,11 @@ on:
       - main
     paths:
       - "blog/**/social.json"
+      - "social/instagram/**/social.json"
   workflow_dispatch:
     inputs:
       social_file:
-        description: "Caminho do arquivo blog/slug/social.json"
+        description: "Caminho do arquivo social.json"
         required: true
         type: string
       dry_run:
@@ -46,7 +47,7 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Publicar conteúdo derivado do artigo
+      - name: Publicar conteúdo validado
         env:
           META_SYSTEM_USER_TOKEN: ${{ secrets.META_SYSTEM_USER_TOKEN }}
           META_BUSINESS_ID: "521532175593406"

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070707"/>
+      <stop offset="0.55" stop-color="#111214"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8d9299"/>
+      <stop offset="0.48" stop-color="#f2f3f4"/>
+      <stop offset="1" stop-color="#969ba2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="36"/></filter>
+  </defs>
+
+  <rect width="1080" height="1350" fill="url(#bg)"/>
+  <ellipse cx="890" cy="205" rx="360" ry="300" fill="url(#glow)" filter="url(#blur)"/>
+
+  <g opacity="0.23" stroke="#aeb3ba" stroke-width="1">
+    <path d="M70 0V1350M210 0V1350M350 0V1350M490 0V1350M630 0V1350M770 0V1350M910 0V1350M1050 0V1350"/>
+    <path d="M0 110H1080M0 250H1080M0 390H1080M0 530H1080M0 670H1080M0 810H1080M0 950H1080M0 1090H1080M0 1230H1080"/>
+  </g>
+
+  <g fill="none" stroke="url(#silver)">
+    <circle cx="873" cy="231" r="122" stroke-width="2" opacity="0.8"/>
+    <circle cx="873" cy="231" r="80" stroke-width="1" opacity="0.5"/>
+    <circle cx="873" cy="231" r="18" stroke-width="3"/>
+    <path d="M873 74V388M716 231H1030" stroke-width="1" opacity="0.5"/>
+    <path d="M792 312L665 439" stroke-width="2" opacity="0.75"/>
+  </g>
+
+  <text x="74" y="95" fill="#f3f3f3" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="7">BELEZA NA CAPITAL</text>
+  <text x="1006" y="95" fill="#9ca1a8" text-anchor="end" font-family="Montserrat, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="4">I001</text>
+
+  <rect x="74" y="260" width="88" height="5" fill="url(#silver)"/>
+  <text x="74" y="347" fill="#aeb3ba" font-family="Montserrat, Arial, sans-serif" font-size="25" font-weight="600" letter-spacing="5">SER ENCONTRADO</text>
+
+  <text x="70" y="510" fill="#f8f8f8" font-family="Montserrat, Arial, sans-serif" font-size="75" font-weight="800" letter-spacing="-2">
+    <tspan x="70" dy="0">SEU MELHOR</tspan>
+    <tspan x="70" dy="88">TRABALHO ESTÁ</tspan>
+    <tspan x="70" dy="88">SENDO ENCONTRADO</tspan>
+    <tspan x="70" dy="88" fill="url(#silver)">PELAS PESSOAS</tspan>
+    <tspan x="70" dy="88" fill="url(#silver)">CERTAS?</tspan>
+  </text>
+
+  <line x1="74" y1="925" x2="1006" y2="925" stroke="#8d9299" stroke-width="1" opacity="0.75"/>
+  <text x="74" y="985" fill="#c6c9cd" font-family="Montserrat, Arial, sans-serif" font-size="28" font-weight="400">
+    <tspan x="74" dy="0">Visibilidade não é aparecer para todos.</tspan>
+    <tspan x="74" dy="44">É ser encontrado por quem procura o que você entrega.</tspan>
+  </text>
+
+  <g transform="translate(74 1165)">
+    <rect width="932" height="2" fill="#4a4d51"/>
+    <text y="75" fill="#f3f3f3" font-family="Montserrat, Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="5">CONTEÚDO BNC  /  01</text>
+    <text x="932" y="75" fill="#9ca1a8" text-anchor="end" font-family="Montserrat, Arial, sans-serif" font-size="18" font-weight="500" letter-spacing="2">MARKETING PARA NEGÓCIOS DA BELEZA</text>
+  </g>
+</svg>
