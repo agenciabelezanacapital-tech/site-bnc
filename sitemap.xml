@@ -23,9 +23,15 @@
   </url>
   <url>
     <loc>https://www.belezanacapital.com.br/blog/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.belezanacapital.com.br/blog/custo-de-aquisicao-de-clientes-para-salao/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.belezanacapital.com.br/blog/google-ads-para-barbearia/</loc>
