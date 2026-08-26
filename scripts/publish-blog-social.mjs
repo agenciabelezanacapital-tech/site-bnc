@@ -33,7 +33,9 @@ function runGit(args, options = {}) {
 
 function normalizeSocialPath(candidate) {
   const normalized = candidate.trim().replaceAll("\\", "/").replace(/^\.\//, "");
-  if (!/^blog\/[a-z0-9-]+\/social\.json$/.test(normalized)) {
+  const blogFile = /^blog\/[a-z0-9-]+\/social\.json$/.test(normalized);
+  const ownedInstagramFile = /^social\/instagram\/i\d{3}\/social\.json$/.test(normalized);
+  if (!blogFile && !ownedInstagramFile) {
     fail(`Arquivo social inválido: ${candidate}`);
   }
 
@@ -53,9 +55,9 @@ function changedSocialFiles() {
   let output = "";
 
   if (before && !/^0+$/.test(before)) {
-    output = runGit(["diff", "--name-only", "--diff-filter=AM", before, after, "--", "blog"], { silent: true });
+    output = runGit(["diff", "--name-only", "--diff-filter=AM", before, after, "--", "blog", "social/instagram"], { silent: true });
   } else {
-    output = runGit(["show", "--pretty=format:", "--name-only", "--diff-filter=AM", after, "--", "blog"], { silent: true });
+    output = runGit(["show", "--pretty=format:", "--name-only", "--diff-filter=AM", after, "--", "blog", "social/instagram"], { silent: true });
   }
 
   const uniqueFiles = [...new Set(output.split(/\r?\n/).filter((path) => path.endsWith("/social.json")))];
@@ -88,9 +90,14 @@ function validateMetadata(raw, sourceFile) {
   const title = requireText(raw.title, "title", 140);
   const articleUrl = new URL(requireText(raw.url, "url", 300));
   const siteOrigin = new URL(SITE_BASE_URL).origin;
+  const isOwnedInstagram = raw.content_type === "owned_instagram";
 
-  if (articleUrl.protocol !== "https:" || articleUrl.origin !== siteOrigin || articleUrl.pathname !== `/blog/${slug}/`) {
+  if (articleUrl.protocol !== "https:" || articleUrl.origin !== siteOrigin || (!isOwnedInstagram && articleUrl.pathname !== `/blog/${slug}/`)) {
     fail("A URL do artigo não corresponde ao domínio e ao slug esperados.");
+  }
+  if (isOwnedInstagram) {
+    if (!/^I\d{3}$/.test(raw.queue_id || "")) fail("O conteúdo próprio precisa declarar um queue_id válido.");
+    if (!sourceFile.toLowerCase().includes(`/instagram/${raw.queue_id.toLowerCase()}/social.json`)) fail("O queue_id não corresponde ao diretório do conteúdo.");
   }
   const imageCandidates = Array.isArray(raw.image_urls) && raw.image_urls.length
     ? raw.image_urls
@@ -394,7 +401,7 @@ async function main() {
   for (const file of files) {
     const metadata = validateMetadata(JSON.parse(readFileSync(file.absolute, "utf8")), file.relative);
     const channels = selectedChannels(metadata);
-    console.log(`Artigo validado: ${metadata.title}`);
+    console.log(`Conteúdo validado: ${metadata.title}`);
 
     if (DRY_RUN) {
       console.log(`Simulação concluída para ${metadata.slug}. Nenhuma rede social foi alterada.`);
