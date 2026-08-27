@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - "blog/**/social.json"
-      - "social/instagram/**/social.json"
   workflow_dispatch:
     inputs:
       social_file:
@@ -57,6 +56,6 @@ jobs:
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
           SOCIAL_FILE: ${{ inputs.social_file }}
-          SOCIAL_CHANNELS: ${{ inputs.channels }}
+          SOCIAL_CHANNELS: ${{ github.event_name == 'workflow_dispatch' && inputs.channels || 'facebook' }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
         run: node scripts/publish-blog-social.mjs
