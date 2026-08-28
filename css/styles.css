@@ -676,53 +676,89 @@ section { padding: 5rem 0; }
 .cases-header .section-subtitle { margin: 0 auto; }
 .cases-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   margin-bottom: 2.5rem;
 }
-.case-card {
+.result-case-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
+  padding: 1.5rem;
   transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
 }
-.case-card:hover {
+.result-case-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+}
+.result-case-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-gold);
   border-color: rgba(201,169,110,0.3);
 }
-.case-img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  position: relative;
-}
-.case-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.case-card:hover .case-img img { transform: scale(1.05); }
-.case-info {
-  padding: 1rem;
-}
-.case-info h3 { font-size: 0.95rem; margin-bottom: 0.25rem; }
-.case-info .city { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.5rem; }
-.case-info .ig-link {
-  display: inline-flex;
+.result-case-top {
+  display: flex;
   align-items: center;
-  gap: 0.3rem;
-  font-size: 0.75rem;
-  color: var(--gold);
-  font-weight: 600;
-  transition: color var(--transition);
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
-.case-info .ig-link:hover { color: var(--gold-light); }
+.result-case-type,
+.result-case-period {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.result-case-type { color: var(--gold); }
+.result-case-period { color: var(--text-muted); text-align: right; }
+.result-primary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.25rem;
+}
+.result-primary strong {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 7vw, 3.5rem);
+  line-height: 1;
+  color: var(--gold);
+}
+.result-primary span { color: var(--text-primary); font-weight: 600; }
+.result-metrics { display: grid; gap: 0.8rem; }
+.result-metrics div {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.result-metrics strong { color: var(--gold-light); white-space: nowrap; }
+.result-metrics span { color: var(--text-secondary); font-size: 0.84rem; }
+.result-context {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 1.25rem;
+}
+.case-privacy-note {
+  max-width: 850px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
 .cases-cta { text-align: center; }
+.cases-cta p { margin-bottom: 1.25rem; color: var(--text-muted); }
 
-@media (min-width: 768px) { .cases-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .cases-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 768px) {
+  .cases-grid { grid-template-columns: repeat(2, 1fr); }
+  .result-case-card { padding: 1.75rem; }
+}
 
 /* ══════════════════════════════════════════════════════════════
    VALOR DO MÉTODO BNC
