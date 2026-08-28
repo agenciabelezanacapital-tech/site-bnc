@@ -1245,8 +1245,32 @@ section { padding: 5rem 0; }
    ══════════════════════════════════════════════════════════════ */
 .faq { background: var(--bg-primary); }
 .faq-header { text-align: center; margin-bottom: 3rem; }
-.faq-list {
+.faq-intro {
   max-width: 760px;
+  margin: 1rem auto 0;
+  color: var(--text-secondary);
+}
+.faq-group {
+  max-width: 860px;
+  margin: 0 auto 3.5rem;
+}
+.faq-group:last-child { margin-bottom: 0; }
+.faq-group-title {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  color: var(--gold);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+}
+.faq-group-title::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(201,169,110,0.35), transparent);
+}
+.faq-list {
+  max-width: 860px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
