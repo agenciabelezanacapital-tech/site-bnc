@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico para Salões no Brasil e EUA | Beleza na Capital</title>
+  <meta name="description" content="Responda ao diagnóstico da Beleza na Capital e descubra qual formato faz mais sentido para o momento do seu salão ou barbearia." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.belezanacapital.com.br/diagnostico/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18156422201"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18156422201');
+  </script>
+</head>
+<body>
+  <header class="header scrolled">
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" aria-label="Beleza na Capital — página inicial">
+          <img src="/img/logo.PNG" alt="Beleza na Capital" width="200" height="60" />
+        </a>
+        <div class="header-actions">
+          <a href="/eua/" class="lang-switch">🇺🇸 Atendimento nos EUA</a>
+          <a href="/" class="btn btn-outline">Voltar ao site</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="qualification-page">
+    <div class="container">
+      <div class="qualification-shell">
+        <div class="qualification-intro">
+          <span class="section-label">Diagnóstico de aderência</span>
+          <h1>Vamos entender o momento do seu negócio.</h1>
+          <p>As respostas abaixo ajudam a identificar o formato mais adequado para sua operação. O processo leva aproximadamente dois minutos e considera país, faturamento, equipe e capacidade de execução.</p>
+        </div>
+
+        <form id="qualification-form" class="qualification-form" novalidate>
+          <div class="form-progress" aria-live="polite">
+            <div class="form-progress-line" aria-hidden="true"><span id="progress-bar"></span></div>
+            <p id="progress-label">Etapa 1 de 4 — Mercado</p>
+          </div>
+
+          <section class="form-step is-active" data-step="1" aria-labelledby="step-1-title">
+            <h2 id="step-1-title">Onde seu negócio opera?</h2>
+            <p class="form-step-intro">Usaremos a moeda e as faixas adequadas ao seu mercado.</p>
+            <div class="form-grid two-columns">
+              <div class="field">
+                <label for="country">País *</label>
+                <select id="country" name="country" required>
+                  <option value="">Selecione</option>
+                  <option value="br">Brasil</option>
+                  <option value="us">Estados Unidos</option>
+                  <option value="other">Outro país</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="language">Idioma preferido *</label>
+                <select id="language" name="language" required>
+                  <option value="pt">Português</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="city">Cidade *</label>
+                <input id="city" name="city" autocomplete="address-level2" required />
+              </div>
+              <div class="field">
+                <label for="region">Estado ou região *</label>
+                <input id="region" name="region" autocomplete="address-level1" required />
+              </div>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="2" aria-labelledby="step-2-title">
+            <h2 id="step-2-title">Conte sobre a operação.</h2>
+            <p class="form-step-intro">Não buscamos apenas tamanho: avaliamos estrutura e capacidade de aproveitar novas oportunidades.</p>
+            <div class="form-grid two-columns">
+              <div class="field">
+                <label for="business-type">Tipo de negócio *</label>
+                <select id="business-type" name="businessType" required>
+                  <option value="">Selecione</option>
+                  <option value="Salão de beleza">Salão de beleza</option>
+                  <option value="Barbearia">Barbearia</option>
+                  <option value="Clínica de estética">Clínica de estética</option>
+                  <option value="Profissional individual">Profissional individual</option>
+                  <option value="Outro negócio da beleza">Outro negócio da beleza</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="operation-time">Tempo de operação *</label>
+                <select id="operation-time" name="operationTime" required>
+                  <option value="">Selecione</option>
+                  <option value="Ainda não abriu">Ainda não abriu</option>
+                  <option value="Menos de 1 ano">Menos de 1 ano</option>
+                  <option value="De 1 a 3 anos">De 1 a 3 anos</option>
+                  <option value="Mais de 3 anos">Mais de 3 anos</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="revenue">Faturamento médio mensal *</label>
+                <select id="revenue" name="revenue" required disabled>
+                  <option value="">Selecione primeiro o país</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="team-size">Pessoas na operação *</label>
+                <select id="team-size" name="teamSize" required>
+                  <option value="">Selecione</option>
+                  <option value="1">Somente eu</option>
+                  <option value="2-4">2 a 4 pessoas</option>
+                  <option value="5-10">5 a 10 pessoas</option>
+                  <option value="10+">Mais de 10 pessoas</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="decision-role">Sua função no negócio *</label>
+                <select id="decision-role" name="decisionRole" required>
+                  <option value="">Selecione</option>
+                  <option value="owner">Dono ou sócio</option>
+                  <option value="decision">Responsável pela decisão</option>
+                  <option value="team">Membro da equipe</option>
+                  <option value="research">Estou pesquisando para outra pessoa</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="lead-owner">Quem atende novos contatos? *</label>
+                <select id="lead-owner" name="leadOwner" required>
+                  <option value="">Selecione</option>
+                  <option value="reception">Recepcionista</option>
+                  <option value="sales">Equipe comercial</option>
+                  <option value="owner">O próprio dono</option>
+                  <option value="none">Ninguém definido</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="3" aria-labelledby="step-3-title">
+            <h2 id="step-3-title">O que precisa mudar primeiro?</h2>
+            <p class="form-step-intro">Isso ajuda a direcionar a conversa para o gargalo principal.</p>
+            <div class="form-grid two-columns">
+              <div class="field">
+                <label for="challenge">Principal desafio *</label>
+                <select id="challenge" name="challenge" required>
+                  <option value="">Selecione</option>
+                  <option value="Atrair novos clientes">Atrair novos clientes</option>
+                  <option value="Converter contatos em agendamentos">Converter contatos em agendamentos</option>
+                  <option value="Organizar recepção e follow-up">Organizar recepção e follow-up</option>
+                  <option value="Aumentar recorrência">Aumentar recorrência</option>
+                  <option value="Organizar toda a operação">Organizar toda a operação</option>
+                  <option value="Ainda não sei">Ainda não sei</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="timeline">Quando pretende começar? *</label>
+                <select id="timeline" name="timeline" required>
+                  <option value="">Selecione</option>
+                  <option value="now">Imediatamente</option>
+                  <option value="30">Em até 30 dias</option>
+                  <option value="60">Em 30 a 60 dias</option>
+                  <option value="later">Depois de 60 dias</option>
+                  <option value="research">Estou apenas pesquisando</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="interest">Formato de interesse *</label>
+                <select id="interest" name="interest" required>
+                  <option value="">Selecione</option>
+                  <option value="Método BNC recorrente">Método BNC recorrente</option>
+                  <option value="Consultoria BNC">Consultoria BNC</option>
+                  <option value="Quero uma recomendação">Quero uma recomendação</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="marketing-investment">Investimento mensal atual em marketing</label>
+                <input id="marketing-investment" name="marketingInvestment" placeholder="Informe na moeda do seu país" inputmode="decimal" />
+              </div>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="4" aria-labelledby="step-4-title">
+            <h2 id="step-4-title">Como podemos falar com você?</h2>
+            <p class="form-step-intro">Esses dados serão usados somente para dar continuidade ao diagnóstico.</p>
+            <div class="form-grid two-columns">
+              <div class="field">
+                <label for="name">Nome *</label>
+                <input id="name" name="name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="business-name">Nome do negócio *</label>
+                <input id="business-name" name="businessName" autocomplete="organization" required />
+              </div>
+              <div class="field">
+                <label for="phone">WhatsApp com código do país *</label>
+                <input id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="Ex.: +55 61 99999-9999" required />
+              </div>
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" autocomplete="email" />
+              </div>
+            </div>
+            <label class="consent-row" for="consent" style="margin-top:1.25rem;">
+              <input id="consent" name="consent" type="checkbox" required />
+              <span>Autorizo a Beleza na Capital a usar estas informações para analisar meu negócio e entrar em contato, conforme a <a class="gold" href="/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+            </label>
+          </section>
+
+          <p id="form-error" class="form-error" role="alert"></p>
+          <div class="form-actions">
+            <button id="back-button" class="btn btn-outline" type="button" hidden>Voltar</button>
+            <button id="next-button" class="btn btn-primary" type="button">Continuar</button>
+            <button id="submit-button" class="btn btn-primary" type="submit" hidden>Ver resultado</button>
+          </div>
+        </form>
+
+        <section id="qualification-result" class="qualification-result" aria-live="polite" tabindex="-1" hidden>
+          <span id="result-badge" class="result-badge">Resultado</span>
+          <h2 id="result-title"></h2>
+          <p id="result-copy"></p>
+          <a id="result-whatsapp" class="btn btn-primary btn-lg" href="#" target="_blank" rel="noopener noreferrer">Continuar no WhatsApp</a>
+          <p style="margin-top:.8rem;font-size:.82rem;">Ao continuar, suas respostas serão inseridas na mensagem do WhatsApp para que nossa equipe receba o contexto completo.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/diagnostico.js"></script>
+</body>
+</html>
