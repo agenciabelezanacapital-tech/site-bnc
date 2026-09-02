@@ -1,5 +1,5 @@
 {
-  "channels": ["facebook", "linkedin"],
+  "channels": ["facebook"],
   "slug": "controle-de-estoque-para-salao-de-beleza",
   "publication_key": "controle-de-estoque-para-salao-de-beleza-20260902",
   "title": "Controle de estoque para salão de beleza: como reduzir perdas e comprar melhor",
@@ -7,8 +7,5 @@
   "image_url": "https://www.belezanacapital.com.br/img/social-blog-bnc.jpg",
   "facebook": {
     "message": "Estoque desorganizado não ocupa apenas espaço. Ele prende dinheiro, aumenta perdas e pode interromper atendimentos por falta de produtos essenciais.\n\nNo novo artigo do Blog BNC, mostramos como organizar entradas e saídas, acompanhar validade, definir estoque mínimo, medir consumo por serviço e comprar com base em dados.\n\nLeia o artigo completo: https://www.belezanacapital.com.br/blog/controle-de-estoque-para-salao-de-beleza/"
-  },
-  "linkedin": {
-    "message": "Controle de estoque também é estratégia de crescimento.\n\nQuando o salão não sabe quanto consome por serviço, compra por percepção, mantém dinheiro parado e descobre perdas tarde demais. O impacto aparece na margem, no caixa e até na experiência do cliente quando um produto essencial falta.\n\nNo novo artigo do Blog BNC, organizamos um método prático para controlar entradas, saídas, validade, consumo, estoque mínimo e indicadores.\n\nLeia: https://www.belezanacapital.com.br/blog/controle-de-estoque-para-salao-de-beleza/\n\n#GestaoDeSalao #Processos #MercadoDaBeleza"
   }
 }
