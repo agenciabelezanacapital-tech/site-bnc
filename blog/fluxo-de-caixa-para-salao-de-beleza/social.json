@@ -1,10 +1,13 @@
 {
-  "publication_key": "fluxo-de-caixa-para-salao-de-beleza-20260904",
   "channels": [
     "facebook"
   ],
+  "slug": "fluxo-de-caixa-para-salao-de-beleza",
+  "publication_key": "fluxo-de-caixa-para-salao-de-beleza-20260904",
+  "title": "Fluxo de caixa para salão de beleza: como organizar entradas e saídas",
+  "url": "https://www.belezanacapital.com.br/blog/fluxo-de-caixa-para-salao-de-beleza/",
+  "image_url": "https://www.belezanacapital.com.br/img/social-blog-bnc.jpg",
   "facebook": {
-    "text": "Seu salão pode estar faturando bem e ainda assim sofrer para pagar compromissos no vencimento. Isso acontece quando o gestor olha apenas para as vendas e não para o momento real em que o dinheiro entra e sai. Neste novo artigo da BNC, mostramos como organizar o fluxo de caixa, projetar as próximas semanas e transformar números em decisões mais seguras.",
-    "link": "https://www.belezanacapital.com.br/blog/fluxo-de-caixa-para-salao-de-beleza/"
+    "message": "Seu salão pode estar faturando bem e ainda assim sofrer para pagar compromissos no vencimento. Isso acontece quando o gestor olha apenas para as vendas e não para o momento real em que o dinheiro entra e sai.\n\nNo novo artigo do Blog BNC, mostramos como organizar o fluxo de caixa, projetar as próximas semanas e transformar números em decisões mais seguras.\n\nLeia o artigo completo: https://www.belezanacapital.com.br/blog/fluxo-de-caixa-para-salao-de-beleza/"
   }
 }
