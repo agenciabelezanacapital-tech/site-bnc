@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <item>
-      <title>Fluxo de caixa para salão de beleza: como organizar entradas e saídas</title>
-      <link>https://www.belezanacapital.com.br/blog/fluxo-de-caixa-para-salao-de-beleza/</link>
-      <guid isPermaLink="true">https://www.belezanacapital.com.br/blog/fluxo-de-caixa-para-salao-de-beleza/</guid>
-      <pubDate>Fri, 04 Sep 2026 11:47:00 GMT</pubDate>
-      <description>Organize entradas, saídas e projeções para proteger o caixa e tomar decisões melhores no salão.</description>
-    </item>
     <item><title>Follow-up para salão de beleza: como recuperar contatos e gerar agendamentos</title><link>https://www.belezanacapital.com.br/blog/follow-up-para-salao-de-beleza/</link><guid>https://www.belezanacapital.com.br/blog/follow-up-para-salao-de-beleza/</guid><pubDate>Tue, 01 Sep 2026 11:42:00 GMT</pubDate><description>Organize a recepção para retomar conversas, reduzir oportunidades perdidas e aumentar a conversão.</description></item>
     <title>Blog BNC | Marketing para negócios da beleza</title>
     <link>https://www.belezanacapital.com.br/blog/</link>
@@ -15,6 +8,14 @@
     <language>pt-BR</language>
     <lastBuildDate>Fri, 04 Sep 2026 11:47:00 GMT</lastBuildDate>
     <atom:link href="https://www.belezanacapital.com.br/blog/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>Fluxo de caixa para salão de beleza: como organizar entradas e saídas</title>
+      <link>https://www.belezanacapital.com.br/blog/fluxo-de-caixa-para-salao-de-beleza/</link>
+      <guid isPermaLink="true">https://www.belezanacapital.com.br/blog/fluxo-de-caixa-para-salao-de-beleza/</guid>
+      <pubDate>Fri, 04 Sep 2026 11:47:00 GMT</pubDate>
+      <description>Organize entradas, saídas e projeções para proteger o caixa e tomar decisões melhores no salão.</description>
+    </item>
 
     <item>
       <title>Gestão de equipe para salão de beleza: como organizar pessoas e rotina</title>
