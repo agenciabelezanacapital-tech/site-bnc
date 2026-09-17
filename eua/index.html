@@ -7,9 +7,11 @@
   <meta name="description" content="Agência brasileira especializada em crescimento para salões e barbearias nos Estados Unidos. Atendimento em português e estratégia adaptada ao mercado local." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.belezanacapital.com.br/eua/" />
-  <link rel="alternate" hreflang="pt-US" href="https://www.belezanacapital.com.br/eua/" />
-  <link rel="alternate" hreflang="en-US" href="https://www.belezanacapital.com.br/en/" />
   <link rel="alternate" hreflang="pt-BR" href="https://www.belezanacapital.com.br/" />
+  <link rel="alternate" hreflang="pt-US" href="https://www.belezanacapital.com.br/eua/" />
+  <link rel="alternate" hreflang="en" href="https://www.belezanacapital.com.br/en/" />
+  <link rel="alternate" hreflang="es" href="https://www.belezanacapital.com.br/es/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.belezanacapital.com.br/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -37,8 +39,11 @@
           </ul>
         </nav>
         <div class="header-actions">
-          <a href="/" class="lang-switch">🇧🇷 Brasil</a>
-          <a href="/en/" class="lang-switch">English</a>
+          <div class="lang-switcher" role="group" aria-label="Selecionar idioma">
+            <a href="/" class="lang-opt lang-flag-br" hreflang="pt-BR" title="Português" aria-label="Português (Brasil)"></a>
+            <a href="/en/" class="lang-opt lang-flag-us" hreflang="en" title="English" aria-label="English version"></a>
+            <a href="/es/" class="lang-opt lang-flag-es" hreflang="es" title="Español" aria-label="Versión en español"></a>
+          </div>
           <a href="/diagnostico/?country=us&lang=pt" class="btn btn-primary">Solicitar diagnóstico</a>
         </div>
         <a href="/diagnostico/?country=us&lang=pt" class="btn btn-primary mobile-top-cta">Diagnóstico</a>

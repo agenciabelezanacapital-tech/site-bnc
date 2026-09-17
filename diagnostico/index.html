@@ -27,7 +27,11 @@
           <img src="/img/logo.PNG" alt="Beleza na Capital" width="200" height="60" />
         </a>
         <div class="header-actions">
-          <a href="/eua/" class="lang-switch">🇺🇸 Atendimento nos EUA</a>
+          <div class="lang-switcher" role="group" aria-label="Selecionar idioma do formulário">
+            <a href="/diagnostico/?lang=pt" class="lang-opt lang-flag-br" hreflang="pt-BR" title="Português" aria-label="Formulário em português"></a>
+            <a href="/diagnostico/?lang=en" class="lang-opt lang-flag-us" hreflang="en" title="English" aria-label="Form in English"></a>
+            <a href="/diagnostico/?lang=es" class="lang-opt lang-flag-es" hreflang="es" title="Español" aria-label="Formulario en español"></a>
+          </div>
           <a href="/" class="btn btn-outline">Voltar ao site</a>
         </div>
       </div>
@@ -67,6 +71,7 @@
                 <select id="language" name="language" required>
                   <option value="pt">Português</option>
                   <option value="en">English</option>
+                  <option value="es">Español</option>
                 </select>
               </div>
               <div class="field">
