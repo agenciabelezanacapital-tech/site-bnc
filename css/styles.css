@@ -1646,3 +1646,44 @@ img, svg, video { max-width: 100%; }
 
 /* Cartões em grade não podem ter largura mínima maior que a coluna. */
 .estrutura-card, .market-card, .case-card, .dores-card { min-width: 0; }
+
+/* ── Índice de temas do blog na home ───────────────────────────
+   Existe para o leitor achar o assunto que quer, e também porque
+   os artigos dependiam de um único link no /blog/ para serem
+   descobertos pelo Google. */
+.blog-index {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+.blog-index-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.75rem;
+}
+.blog-index-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+.blog-index-col h4 {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+.blog-index-col h4 + ul + h4 { margin-top: 1.75rem; }
+.blog-index-col ul { display: grid; gap: 0.55rem; }
+.blog-index-col a {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  transition: color var(--transition);
+  display: inline-block;
+}
+.blog-index-col a:hover { color: var(--gold); }
+
+@media (min-width: 640px)  { .blog-index-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .blog-index-grid { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; } }
