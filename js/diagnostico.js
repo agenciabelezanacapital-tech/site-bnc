@@ -20,6 +20,68 @@
 
   const SUPPORTED_LANGS = ['pt', 'en', 'es'];
 
+  // ---------------------------------------------------------------
+  // Radar de leads BNC — grava o lead antes de abrir o WhatsApp.
+  // A URL vem do web app do Apps Script (scripts/leads-apps-script.gs).
+  // ---------------------------------------------------------------
+  const LEAD_ENDPOINT = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+  const LEAD_TOKEN = 'bnc-radar-7fK3nQ2026';
+  let leadId = '';
+
+  function gerarLeadId() {
+    const d = new Date();
+    const p = n => String(n).padStart(2, '0');
+    const carimbo = `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`;
+    return `${carimbo}-${Math.random().toString(36).slice(2, 7)}`;
+  }
+
+  function enviarParaRadar(payload, usarBeacon) {
+    if (typeof LEAD_ENDPOINT !== 'string' || LEAD_ENDPOINT.indexOf('http') !== 0) return;
+    const corpo = JSON.stringify(Object.assign({ token: LEAD_TOKEN }, payload));
+    try {
+      if (usarBeacon && navigator.sendBeacon) {
+        navigator.sendBeacon(LEAD_ENDPOINT, new Blob([corpo], { type: 'text/plain;charset=UTF-8' }));
+        return;
+      }
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        keepalive: true,
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: corpo
+      }).catch(() => {});
+    } catch (erro) {
+      // o radar nunca pode travar o fluxo do lead
+    }
+  }
+
+  function montarCamposDoRadar(data) {
+    const textoSelecionado = id => {
+      const select = document.querySelector(`#${id}`);
+      return select?.options[select.selectedIndex]?.text || '';
+    };
+    return {
+      nome: data.name || '',
+      negocio: data.businessName || '',
+      whatsapp: data.phone || '',
+      email: data.email || '',
+      tipoNegocio: textoSelecionado('business-type') || data.businessType || '',
+      pais: textoSelecionado('country') || data.country || '',
+      cidade: data.city || '',
+      regiao: data.region || '',
+      faturamento: textoSelecionado('revenue') || data.revenue || '',
+      tempoOperacao: textoSelecionado('operation-time') || data.operationTime || '',
+      equipe: textoSelecionado('team-size') || data.teamSize || '',
+      funcao: textoSelecionado('decision-role') || data.decisionRole || '',
+      quemAtende: textoSelecionado('lead-owner') || data.leadOwner || '',
+      desafio: textoSelecionado('challenge') || data.challenge || '',
+      prazo: textoSelecionado('timeline') || data.timeline || '',
+      interesse: textoSelecionado('interest') || data.interest || '',
+      investimento: data.marketingInvestment || '',
+      idioma: data.language || ''
+    };
+  }
+
   function uiLang() {
     const value = language?.value;
     return SUPPORTED_LANGS.includes(value) ? value : 'pt';
@@ -124,6 +186,10 @@
   }
 
   function showStep(index) {
+    // nunca sair da faixa de etapas: um indice invalido derrubava o
+    // formulario inteiro ("Etapa 5 de 4") e o lead ficava sem conseguir enviar
+    if (!steps.length) return;
+    index = Math.max(0, Math.min(index, steps.length - 1));
     currentStep = index;
     steps.forEach((step, stepIndex) => step.classList.toggle('is-active', stepIndex === index));
     progressBar.style.width = `${((index + 1) / steps.length) * 100}%`;
@@ -141,7 +207,7 @@
     nextButton.hidden = index === steps.length - 1;
     submitButton.hidden = index !== steps.length - 1;
     errorBox.textContent = '';
-    steps[index].querySelector('h2').focus?.();
+    steps[index]?.querySelector('h2')?.focus?.();
   }
 
   function validateCurrentStep() {
@@ -269,7 +335,7 @@
       lines.push(`${label('Investimento atual em marketing', 'Current marketing investment', 'Inversión actual en marketing')}: ${data.marketingInvestment}`);
     }
     if (data.email) lines.push(`${label('E-mail', 'Email', 'Correo')}: ${data.email}`);
-    return `https://wa.me/556196112266?text=${encodeURIComponent(lines.join('\n'))}`;
+    return `https://wa.me/5561995055390?text=${encodeURIComponent(lines.join('\n'))}`;
   }
 
   nextButton.addEventListener('click', () => {
@@ -285,7 +351,19 @@
 
   form.addEventListener('submit', event => {
     event.preventDefault();
-    if (!validateCurrentStep()) return;
+    // so conclui na ultima etapa, e confere todas as anteriores
+    for (let i = 0; i < steps.length; i++) {
+      const pendente = Array.from(steps[i].querySelectorAll('[required]'))
+        .find(campo => !campo.checkValidity());
+      if (pendente) {
+        showStep(i);
+        errorBox.textContent = pendente.type === 'checkbox'
+          ? t('Você precisa autorizar o contato para continuar.', 'You must authorize contact to continue.', 'Necesitas autorizar el contacto para continuar.')
+          : t('Preencha todos os campos obrigatórios desta etapa.', 'Complete all required fields in this step.', 'Completa todos los campos obligatorios de este paso.');
+        pendente.focus();
+        return;
+      }
+    }
     const data = Object.fromEntries(new FormData(form).entries());
     const score = calculateScore(data);
     const classification = classify(score, data);
@@ -296,6 +374,15 @@
     form.hidden = true;
     result.hidden = false;
     result.focus();
+    leadId = gerarLeadId();
+    enviarParaRadar({
+      type: 'lead',
+      leadId: leadId,
+      tier: classification.tier,
+      score: score,
+      origem: window.location.href,
+      campos: montarCamposDoRadar(data)
+    }, false);
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'diagnostic_completed', {
         country: data.country,
@@ -306,6 +393,7 @@
   });
 
   document.querySelector('#result-whatsapp').addEventListener('click', () => {
+    if (leadId) enviarParaRadar({ type: 'whatsapp_click', leadId: leadId }, true);
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'conversion', {
         send_to: 'AW-18156422201/R5uZCI3vyqscELmI1NFD',
