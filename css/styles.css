@@ -1598,3 +1598,51 @@ section { padding: 5rem 0; }
 .legal-contact-box ul { list-style: none; padding-left: 0; gap: 0.4rem; }
 .legal-contact-box li { color: var(--text-muted); }
 .legal-contact-box strong { color: var(--text-primary); }
+
+/* ── Ajustes de responsividade (mobile) ─────────────────────── */
+
+/* CTAs longos estouravam a largura da tela no celular porque o
+   botão era nowrap. Agora quebram em duas linhas. */
+@media (max-width: 600px) {
+  .btn {
+    white-space: normal;
+    max-width: 100%;
+    text-align: center;
+    padding: 0.7rem 1.35rem;
+    line-height: 1.25;
+  }
+  .btn-lg { font-size: 0.92rem; }
+  .hero-cta, .cases-cta, .diagnostico-cta { max-width: 100%; }
+}
+
+/* Rótulos em caixa alta abaixo de 12px ficam difíceis de ler no
+   celular. Piso de 12px só no mobile, sem mexer no desktop. */
+@media (max-width: 600px) {
+  .consultoria-badge,
+  .consultoria-option-label,
+  .consultoria-card-label,
+  .metric-label,
+  .stat-label,
+  .blog-kicker,
+  .blog-tag { font-size: 0.75rem !important; }
+}
+
+/* Área de toque do seletor de idiomas: o visual continua 26x19,
+   mas o alvo clicável passa a ter 44px de altura. */
+.lang-switcher .lang-opt { position: relative; }
+.lang-switcher .lang-opt::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+}
+
+/* Nenhum elemento deve poder empurrar a página na horizontal. */
+body { overflow-x: hidden; }
+img, svg, video { max-width: 100%; }
+
+/* Cartões em grade não podem ter largura mínima maior que a coluna. */
+.estrutura-card, .market-card, .case-card, .dores-card { min-width: 0; }
