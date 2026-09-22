@@ -1,0 +1,181 @@
+{
+  "timezone": "America/Sao_Paulo",
+  "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
+  "articles": {
+    "avaliacoes-no-google-para-salao-de-beleza": {
+      "published_at": "2026-09-05T11:22:25Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/EgQm4o5MZS3eC1CAQM8sJjAsyZ8n",
+      "commit": "a25e534c8a71b64934891c5caa340a4612fce722"
+    },
+    "campanhas-sazonais-para-salao-de-beleza": {
+      "published_at": "2026-09-12T11:17:48Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/4pQRkEAbnE31YRfFSRFmSYUC4QAd",
+      "commit": "13bb8d90d5187d356bae9c5d630e546c41bcc23c"
+    },
+    "checklist-de-abertura-e-fechamento-do-salao": {
+      "published_at": "2026-09-10T11:12:54Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/4Z8umH7HGQC9eNr8VC94KGhibJq6",
+      "commit": "c6397a7207acc7d2ea2c6a756f72f4390985337b"
+    },
+    "como-aumentar-ticket-medio-salao": {
+      "published_at": "2026-08-30T11:45:15Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/EaSYz16jrUpd5dDarqqk5H8frXEB",
+      "commit": "6e73b0673bcdfcb0f7582eadd4c4d0dfb0ca7438"
+    },
+    "como-converter-leads-em-agendamentos": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    },
+    "como-definir-metas-para-salao-de-beleza": {
+      "published_at": "2026-08-31T11:54:54Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7N1Nk8F98EkjxuzaSMLHpH2EH1qJ",
+      "commit": "016aa455b257020852775bff6f797610bf4e0f54"
+    },
+    "como-fidelizar-clientes-no-salao-de-beleza": {
+      "published_at": "2026-08-29T12:03:21Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/9Qey5RLoixZxXcjMCtTTnCuV1QFu",
+      "commit": "a57b621653c6c98d9813109e0978fd86545b6c11"
+    },
+    "como-reduzir-faltas-e-cancelamentos-no-salao": {
+      "published_at": "2026-08-28T11:10:51Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5fxA19ukyfJ8qPdnnqEAs8rSmXQE",
+      "commit": "7380f7e70d52f530b122ca4146fc886996c8e75f"
+    },
+    "consultoria-de-marketing-para-salao": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    },
+    "controle-de-estoque-para-salao-de-beleza": {
+      "published_at": "2026-09-02T11:35:53Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/95DUx45RA7vCSC3wFa6QWS4zZqyb",
+      "commit": "df873a57dc242d04dc3ec5b1774d734423504afe"
+    },
+    "custo-de-aquisicao-de-clientes-para-salao": {
+      "published_at": "2026-08-26T11:25:58Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/3Vv6RaVdjpZJYwFMHHLxD3V5Csiu",
+      "commit": "e3d24dd5452d9c1ad548510aa51eec94dd7c92ea"
+    },
+    "desconto-em-salao-de-beleza": {
+      "published_at": "2026-09-11T11:15:43Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/AhkccbKJDK2GcJG3Qjsriq8J3nyo",
+      "commit": "7c49bb35a1ee66639d11ee7bd0f35fcb4c62fb1a"
+    },
+    "diagnostico-de-marketing-para-salao": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    },
+    "dre-para-salao-de-beleza": {
+      "published_at": "2026-09-14T11:50:13Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/3BVqEziuKT64qAgBx4HG9Qxgx5b8",
+      "commit": "eb7969b952ad23f56f1cca6cf9c2c5f3985a33d2"
+    },
+    "ficha-de-cliente-para-salao-de-beleza": {
+      "published_at": "2026-09-09T12:02:58Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7EprsznrSz4Q9Tbn5egn4nXXpB3u",
+      "commit": "d4c8c0160a237ae18795f0c37b38df1d320e4318"
+    },
+    "fluxo-de-caixa-para-salao-de-beleza": {
+      "published_at": "2026-09-04T11:53:11Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/H7mADhPf19JgNoymbjCHjDyU4bZR",
+      "commit": "8387a97e98099c6babe7a222ea813e78406bdd8b"
+    },
+    "follow-up-para-salao-de-beleza": {
+      "published_at": "2026-09-01T11:46:35Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5LYtgyiZnTtc3fBAmHtjBFgGz9JM",
+      "commit": "3cc76156a22e9d4906647f2eba822dcc5bc12206"
+    },
+    "gestao-de-equipe-para-salao-de-beleza": {
+      "published_at": "2026-09-03T11:30:17Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/Ay3MW4CQN5eWr65dzEr25wFjhhkn",
+      "commit": "7badb7f925c4379c570e1895926a1ae11396d10e"
+    },
+    "google-ads-para-barbearia": {
+      "published_at": "2026-08-25T11:48:28Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7cBQPcmewnR89b8ReC164M6L2Ro9",
+      "commit": "1aaccdfe0e31357786f44c17fd4943c5f3f6aa08"
+    },
+    "google-meu-negocio-para-salao": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    },
+    "landing-page-para-salao": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    },
+    "marketing-para-barbearia": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    },
+    "marketing-para-clinica-de-estetica": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    },
+    "marketing-para-salao-de-beleza": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    },
+    "meta-ads-para-salao": {
+      "published_at": "2026-08-24T11:57:53Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/63kiqsjzfXHH5fCZmsMFRkYhUUxH",
+      "commit": "c2bdb3de5038bbf2502f9ac0452f1c61de058715"
+    },
+    "mix-de-servicos-para-salao-de-beleza": {
+      "published_at": "2026-09-22T11:47:05Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/CMEZBoM3BtXirf7ss1YikBapEtg8",
+      "commit": "0e878e3b1a0631f0082072fba7aaa2bb76a78cac"
+    },
+    "pesquisa-de-satisfacao-para-salao-de-beleza": {
+      "published_at": "2026-09-08T11:55:25Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7WWknMXS6faCeYSgvDQEgWoKWcMm",
+      "commit": "3b39f13bedc16c61baa6b82517181039c0003772"
+    },
+    "precificacao-de-servicos-para-salao-de-beleza": {
+      "published_at": "2026-09-06T11:25:18Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5DWiq8jvmqreh9VjfgKnEYoHTsfi",
+      "commit": "aeb210823fb8ecdd74d77cb41abc32b0b0761457"
+    },
+    "programa-de-indicacao-para-salao-de-beleza": {
+      "published_at": "2026-09-07T11:51:13Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/6sdYAzQUHV5gkkAMpoDWS6bcZMSs",
+      "commit": "fe0eba8dde74b4af3a7fc3f4a32d6dc953085a71"
+    },
+    "publico-alvo-para-salao-de-beleza": {
+      "published_at": "2026-09-15T11:53:54Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/4EDfoumsXaMjgsDkpVim4HR9kcML",
+      "commit": "56bdb18ed0e981e89f86836afdcd5a27f1ac290e"
+    },
+    "seu-salao-aparece-no-google": {
+      "published_at": "2026-08-22T11:00:28Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/6eLUXsKeMMGuVh1cb5W8Pbx9VmdA",
+      "commit": "1f04b6177aa1607f07cf917182cf28554fe0aa62"
+    },
+    "seu-salao-funciona-sem-voce": {
+      "published_at": "2026-08-23T11:03:13Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7A6Brt53C7TyCppyrQnQZLAcjM8X",
+      "commit": "85ce655d1d6bf586d73b782b868085307cc3c2a4"
+    },
+    "taxa-de-conversao-da-recepcao-do-salao": {
+      "published_at": "2026-09-13T11:52:47Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/d81w4TJtPGj9CXuPKBpJLc1uWxGN",
+      "commit": "c4e7cac251420f5b527749fd8482a0d4f31bc974"
+    },
+    "taxa-de-ocupacao-da-agenda-do-salao": {
+      "published_at": "2026-08-27T11:22:24Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/6uofDbUQQekbJBsgpyYHwCc1Di7X",
+      "commit": "bfe8cba1eb07641ae51066cae8a643cb3ab3d2f8"
+    },
+    "trafego-pago-para-salao-google-ou-meta": {
+      "published_at": "2026-08-22T00:19:12Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7BYEGQXNUcRcVH13XbHAEzoghyKb",
+      "commit": "671c995d966127209d6b8baa2b8a48e5f6e99f0b"
+    }
+  }
+}
