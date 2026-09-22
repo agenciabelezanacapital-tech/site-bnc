@@ -583,13 +583,20 @@
   color: rgba(255,255,255,0.67);
 }
 
-.article-author {
+.article-author,
+.article-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem 1.2rem;
   align-items: center;
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size: 0.875rem;
+}
+
+.article-meta > span + span::before {
+  content: '•';
+  margin-right: 1.2rem;
+  color: var(--gold);
 }
 
 .article-author strong {
@@ -597,13 +604,17 @@
   font-weight: 500;
 }
 
-.article-main {
+.article-main,
+.article-content:has(> .container) {
   padding: 4.5rem 0 6rem;
   background: var(--bg-primary);
 }
 
 .article-layout {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 790px;
+  margin-inline: auto;
   gap: 3rem;
   align-items: start;
 }
@@ -613,9 +624,38 @@
   max-width: 790px;
 }
 
-.article-content > p:first-child {
+/* Support both published article templates. The outer section must
+   span the page; only the reading column receives the width limit. */
+.article-content:has(> .container) {
+  max-width: none;
+}
+
+.article-body {
+  min-width: 0;
+}
+
+.article-layout > .article-content,
+.article-layout > .article-body {
+  width: 100%;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+/* Align the title with the text in articles without a sidebar. */
+body:has(.article-layout > :only-child) .article-hero > .container {
+  max-width: 830px;
+}
+
+body:has(.article-layout > :only-child) .article-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.15;
+}
+
+.article-content > p:first-child,
+.article-body > p:first-child {
   color: rgba(255,255,255,0.84);
-  font-size: 1.08rem;
+  font-size: 1.125rem;
 }
 
 .article-feature-image {
@@ -848,7 +888,10 @@
   .blog-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .blog-pillars-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .blog-cta-box { grid-template-columns: 1fr auto; }
-  .article-layout { grid-template-columns: minmax(0, 1fr) 280px; }
+  .article-layout:has(> .article-aside) {
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
   .article-aside { position: sticky; top: calc(var(--header-h) + 1.5rem); }
 }
 
@@ -863,14 +906,22 @@
 
 @media (max-width: 679px) {
   .blog-simple-header img { height: 100px; margin-top: -16px; }
-  .blog-simple-nav > a:not(.btn):not([aria-current="page"]) { display: none; }
+  .blog-simple-nav { gap: 0.75rem; }
+  .blog-simple-nav > a:not(.btn) { font-size: 0.875rem; }
   .blog-simple-nav .btn { display: none; }
   .blog-hero { min-height: auto; padding-top: calc(var(--header-h) + 3rem); }
   .blog-hero-visual { min-height: 310px; }
   .blog-meta span + span::before { margin-right: 0.55rem; }
   .blog-featured-media { min-height: 250px; }
   .blog-main, .blog-pillars, .blog-cta { padding-top: 4rem; padding-bottom: 4rem; }
-  .article-main { padding-top: 3.5rem; }
+  .article-main,
+  .article-content:has(> .container) { padding-top: 2.5rem; }
+  .article-hero {
+    padding-top: calc(var(--header-h) + 2.5rem);
+    padding-bottom: 2.5rem;
+  }
+  .article-layout > .article-content,
+  .article-layout > .article-body { font-size: 1rem; }
   .article-breadcrumb { margin-bottom: 2rem; }
 }
 
@@ -884,6 +935,7 @@
   }
 
   .article-main,
+  .article-content:has(> .container),
   .article-hero {
     padding: 1.5rem 0;
   }
