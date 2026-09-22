@@ -1,0 +1,52 @@
+name: Atualizar índice de temas da home
+
+# Quando um artigo novo é publicado, a home precisa passar a linkar ele.
+# Sem isso o artigo fica dependendo só da /blog/ para ser descoberto, que foi
+# exatamente o que deixou 21 páginas sem rastreamento no Search Console.
+#
+# O commit gerado aqui mexe apenas em index.html, e o gatilho só observa
+# blog/**, então não existe risco de a ação disparar a si mesma.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "blog/*/index.html"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: indice-home
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    name: Reconstruir o índice e commitar se mudou
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Baixar o site
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Reconstruir o índice
+        run: node scripts/atualizar-indice-home.mjs
+
+      - name: Commitar se a home mudou
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Índice já estava atualizado, nada a commitar."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Atualiza o indice de temas da home com os artigos do blog"
+          git push
