@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "tempo-de-espera-no-salao-de-beleza": {
+      "published_at": "2026-09-23T11:59:23.024Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/DqHUFBiodKayZGW6hndz1xc8LjqK",
+      "commit": "06757f882150f5a7ee6ecb21a7144e85ce2514f2"
+    },
     "avaliacoes-no-google-para-salao-de-beleza": {
       "published_at": "2026-09-05T11:22:25Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/EgQm4o5MZS3eC1CAQM8sJjAsyZ8n",
