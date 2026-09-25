@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "seo-local-para-salao-de-beleza": {
+      "published_at": "2026-09-25T11:39:27.624Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/HTjuKGB5J6Zow1mDcXjxgKUt6THH",
+      "commit": "3ca3dc2ba102f9f3759098537b2d464b5e315b82"
+    },
     "ponto-de-equilibrio-para-salao-de-beleza": {
       "published_at": "2026-09-24T11:51:31.717Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/9jQ9zrrZc6pr13Do5J3G2sQYBk9U",
