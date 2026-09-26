@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "plano-de-acao-para-salao-de-beleza": {
+      "published_at": "2026-09-26T11:16:07.719Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/3mzNZyapAFfazqLm3NfpWzcbEcDc",
+      "commit": "16f7640823da43f3fab89985feebd66c781cebfa"
+    },
     "seo-local-para-salao-de-beleza": {
       "published_at": "2026-09-25T11:39:27.624Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/HTjuKGB5J6Zow1mDcXjxgKUt6THH",
