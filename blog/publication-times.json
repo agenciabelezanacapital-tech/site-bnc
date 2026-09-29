@@ -2,6 +2,16 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "comissao-em-salao-de-beleza": {
+      "published_at": "2026-09-28T11:27:25.428Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/iGMTRGVGqAhqf6ocE3bwJSde78i3",
+      "commit": "c2c68907afd5ae3f06540f0d711fb4b8450a6e90"
+    },
+    "palavras-chave-negativas-google-ads-salao": {
+      "published_at": "2026-09-29T11:24:01.979Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/3421br5e9onCkT7qfEWLePwhxXaf",
+      "commit": "bb137149c7c25c3cfeef141fd8f15ffc1c5caabb"
+    },
     "plano-de-acao-para-salao-de-beleza": {
       "published_at": "2026-09-26T11:16:07.719Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/3mzNZyapAFfazqLm3NfpWzcbEcDc",
