@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "meta-ads-para-barbearia": {
+      "published_at": "2026-09-30T11:43:10.197Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/BRcs1wHKuLazoY1bMkEsAZQ8CT6A",
+      "commit": "13b481ca066fa253586656baa915d20231ee41b8"
+    },
     "comissao-em-salao-de-beleza": {
       "published_at": "2026-09-28T11:27:25.428Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/iGMTRGVGqAhqf6ocE3bwJSde78i3",
