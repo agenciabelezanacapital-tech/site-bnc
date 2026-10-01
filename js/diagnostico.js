@@ -24,9 +24,22 @@
   // Radar de leads BNC — grava o lead antes de abrir o WhatsApp.
   // A URL vem do web app do Apps Script (scripts/leads-apps-script.gs).
   // ---------------------------------------------------------------
-  const LEAD_ENDPOINT = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+  // Reserva. A URL de verdade mora em js/radar.js e e lida por endpointAtual().
+  // So mexa aqui se o radar.js deixar de carregar nesta pagina.
+  const LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwouEL3eGpbsJMefXOaKtw33LaGR3DWY9oukUoA59PgwBaRkvVpKhpGlRf_2KUUJ290/exec';
   const LEAD_TOKEN = 'bnc-radar-7fK3nQ2026';
   let leadId = '';
+
+  // Funil do formulario: uma visita = uma passagem pela pagina /diagnostico/.
+  // etapaMaxima guarda a etapa mais avancada que a pessoa alcancou, para o
+  // evento de abandono saber exatamente onde ela parou.
+  let visitaId = '';
+  let etapaMaxima = -1;
+  let concluiu = false;
+  let campoTravado = '';
+  let abandonoEnviado = false;
+  const inicioVisita = Date.now();
+  const NOMES_ETAPA = ['Mercado', 'Operacao', 'Objetivo', 'Contato'];
 
   function gerarLeadId() {
     const d = new Date();
@@ -35,15 +48,26 @@
     return `${carimbo}-${Math.random().toString(36).slice(2, 7)}`;
   }
 
+  // A URL do Apps Script mora em js/radar.js, que carrega em todas as paginas.
+  // Aqui ela e resolvida na hora do envio, para a ordem de carregamento dos
+  // dois arquivos nunca importar.
+  function endpointAtual() {
+    if (window.BNCRadar && typeof window.BNCRadar.endpoint === 'string') {
+      return window.BNCRadar.endpoint;
+    }
+    return LEAD_ENDPOINT;
+  }
+
   function enviarParaRadar(payload, usarBeacon) {
-    if (typeof LEAD_ENDPOINT !== 'string' || LEAD_ENDPOINT.indexOf('http') !== 0) return;
+    const alvo = endpointAtual();
+    if (typeof alvo !== 'string' || alvo.indexOf('http') !== 0) return;
     const corpo = JSON.stringify(Object.assign({ token: LEAD_TOKEN }, payload));
     try {
       if (usarBeacon && navigator.sendBeacon) {
-        navigator.sendBeacon(LEAD_ENDPOINT, new Blob([corpo], { type: 'text/plain;charset=UTF-8' }));
+        navigator.sendBeacon(alvo, new Blob([corpo], { type: 'text/plain;charset=UTF-8' }));
         return;
       }
-      fetch(LEAD_ENDPOINT, {
+      fetch(alvo, {
         method: 'POST',
         mode: 'no-cors',
         keepalive: true,
@@ -52,6 +76,69 @@
       }).catch(() => {});
     } catch (erro) {
       // o radar nunca pode travar o fluxo do lead
+    }
+  }
+
+  function segundosNaPagina() {
+    return Math.round((Date.now() - inicioVisita) / 1000);
+  }
+
+  function dispositivo() {
+    const l = (navigator.userAgent || '').toLowerCase();
+    if (/ipad|tablet/.test(l)) return 'tablet';
+    if (/mobi|android|iphone/.test(l)) return 'celular';
+    return 'desktop';
+  }
+
+  // Marca que a visita alcancou uma etapa. So dispara na primeira vez que a
+  // pessoa chega naquela etapa, para voltar e avancar de novo nao inflar o funil.
+  function registrarEtapa(index) {
+    if (index <= etapaMaxima) return;
+    etapaMaxima = index;
+    const nome = NOMES_ETAPA[index] || ('Etapa ' + (index + 1));
+    enviarParaRadar({
+      type: 'step',
+      visitaId: visitaId,
+      etapa: index + 1,
+      etapaNome: nome,
+      segundos: segundosNaPagina(),
+      origem: window.location.href,
+      idioma: uiLang(),
+      referrer: document.referrer || '',
+      dispositivo: dispositivo()
+    }, false);
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'diagnostic_step', {
+        step_number: index + 1,
+        step_name: nome
+      });
+    }
+  }
+
+  // Abandono: a pessoa saiu da pagina sem concluir o diagnostico. Usa sendBeacon
+  // porque a aba esta fechando e um fetch normal seria cancelado.
+  function registrarAbandono() {
+    if (concluiu || abandonoEnviado || etapaMaxima < 0) return;
+    abandonoEnviado = true;
+    enviarParaRadar({
+      type: 'abandon',
+      visitaId: visitaId,
+      etapa: etapaMaxima + 1,
+      etapaNome: NOMES_ETAPA[etapaMaxima] || ('Etapa ' + (etapaMaxima + 1)),
+      campoTravado: campoTravado,
+      segundos: segundosNaPagina(),
+      origem: window.location.href,
+      idioma: uiLang(),
+      referrer: document.referrer || '',
+      dispositivo: dispositivo()
+    }, true);
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'diagnostic_abandoned', {
+        step_number: etapaMaxima + 1,
+        step_name: NOMES_ETAPA[etapaMaxima] || '',
+        blocked_field: campoTravado,
+        seconds_on_page: segundosNaPagina()
+      });
     }
   }
 
@@ -191,6 +278,7 @@
     if (!steps.length) return;
     index = Math.max(0, Math.min(index, steps.length - 1));
     currentStep = index;
+    registrarEtapa(index);
     steps.forEach((step, stepIndex) => step.classList.toggle('is-active', stepIndex === index));
     progressBar.style.width = `${((index + 1) / steps.length) * 100}%`;
     const labels = t(
@@ -214,6 +302,8 @@
     const requiredFields = Array.from(steps[currentStep].querySelectorAll('[required]'));
     const invalid = requiredFields.find(field => !field.checkValidity());
     if (!invalid) return true;
+    // guarda qual campo barrou a pessoa: e o dado que explica o abandono
+    campoTravado = invalid.name || invalid.id || invalid.type || '';
     errorBox.textContent = invalid.type === 'checkbox'
       ? t('Você precisa autorizar o contato para continuar.', 'You must authorize contact to continue.', 'Necesitas autorizar el contacto para continuar.')
       : t('Preencha todos os campos obrigatórios desta etapa.', 'Complete all required fields in this step.', 'Completa todos los campos obligatorios de este paso.');
@@ -374,10 +464,13 @@
     form.hidden = true;
     result.hidden = false;
     result.focus();
+    concluiu = true;
     leadId = gerarLeadId();
     enviarParaRadar({
       type: 'lead',
       leadId: leadId,
+      visitaId: visitaId,
+      segundos: segundosNaPagina(),
       tier: classification.tier,
       score: score,
       origem: window.location.href,
@@ -527,5 +620,25 @@
   updateRevenueOptions();
   if (presetLanguage === 'en') translateEnglishUi();
   if (presetLanguage === 'es') translateSpanishUi();
+  // A visita precisa ser a MESMA do radar.js, senao o funil nao amarra o
+  // pageview com as etapas. Le a chave compartilhada direto, assim funciona
+  // mesmo se este arquivo rodar antes do radar.js.
+  visitaId = (function () {
+    if (window.BNCRadar && window.BNCRadar.visitaId) return window.BNCRadar.visitaId();
+    try {
+      var v = sessionStorage.getItem('bnc_visita');
+      if (!v) { v = gerarLeadId(); sessionStorage.setItem('bnc_visita', v); }
+      return v;
+    } catch (e) {
+      return gerarLeadId();
+    }
+  })();
   showStep(0);
+
+  // pagehide cobre fechar aba, voltar e navegar para outra pagina.
+  // visibilitychange cobre o celular que vai para segundo plano e nunca volta.
+  window.addEventListener('pagehide', registrarAbandono);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') registrarAbandono();
+  });
 })();
