@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "categoria-perfil-empresa-google-salao": {
+      "published_at": "2026-10-01T11:46:37.946Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5v5Tqs5RLrEcHMH9uhsZQATjHZTd",
+      "commit": "b6dde3301a642354318d91782fb0a6eca69e21af"
+    },
     "meta-ads-para-barbearia": {
       "published_at": "2026-09-30T11:43:10.197Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/BRcs1wHKuLazoY1bMkEsAZQ8CT6A",
