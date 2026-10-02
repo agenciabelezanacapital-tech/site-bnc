@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "orcamento-marketing-salao-de-beleza": {
+      "published_at": "2026-10-02T11:53:59.401Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/BMjSJDJzXRdSJaZRvkWLN1gaNSVd",
+      "commit": "29991e2b798813678284bca92e2557f138e7dfad"
+    },
     "categoria-perfil-empresa-google-salao": {
       "published_at": "2026-10-01T11:46:37.946Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5v5Tqs5RLrEcHMH9uhsZQATjHZTd",
