@@ -1,1 +1,4 @@
 .vercel
+
+# credencial local usada pelo Claude (nunca commitar)
+.claude-git-token
