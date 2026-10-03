@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "taxa-retencao-clientes-salao": {
+      "published_at": "2026-10-03T12:08:40.760Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/HSiHLLURGRWcqL4Ara2NzcmzqhbB",
+      "commit": "a56a5f61323b45351ee7e605f89384d35a2e9edb"
+    },
     "orcamento-marketing-salao-de-beleza": {
       "published_at": "2026-10-02T11:53:59.401Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/BMjSJDJzXRdSJaZRvkWLN1gaNSVd",
