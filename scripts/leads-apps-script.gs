@@ -7,7 +7,7 @@
  * Endpoints:
  *   POST  {type:'lead', ...}            -> grava uma linha nova na aba Leads
  *   POST  {type:'whatsapp_click', ...}  -> marca que o lead clicou no WhatsApp
- *   POST  {type:'pageview'|'step'|'abandon'|'wa_click'|'exit', ...}
+ *   POST  {type:'pageview'|'step'|'abandon'|'wa_click'|'exit'|'click', ...}
  *                                       -> grava uma linha na aba Funil
  *   GET   ?token=...&action=funil       -> devolve os eventos do funil
  *   GET   ?token=...&action=funil&dias=7 -> so os ultimos N dias
@@ -48,7 +48,7 @@ const HEADERS_FUNIL = [
 const COLF = {};
 HEADERS_FUNIL.forEach(function (h, i) { COLF[h] = i + 1; });
 
-const TIPOS_FUNIL = ['pageview', 'step', 'abandon', 'wa_click', 'exit'];
+const TIPOS_FUNIL = ['pageview', 'step', 'abandon', 'wa_click', 'exit', 'click'];
 
 function sheet_() {
   const ss = SpreadsheetApp.openById(SHEET_ID);

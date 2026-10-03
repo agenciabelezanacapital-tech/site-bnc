@@ -7,6 +7,8 @@
      2. Registrar cada visita de pagina (type:'pageview').
      3. Registrar cada clique em botao de WhatsApp (type:'wa_click'),
         dizendo de qual pagina, de qual secao e de qual botao veio.
+     3b. Registrar todo clique da pagina (type:'click') com a posicao em
+        porcentagem, que e a materia-prima do mapa de calor proprio.
      4. Expor window.BNCRadar para o diagnostico.js usar o mesmo cano.
 
    Se LEAD_ENDPOINT nao for uma URL http valida, tudo aqui fica inerte:
@@ -175,6 +177,54 @@
         button_text: (link.textContent || '').trim().slice(0, 60)
       });
     }
+  }, true);
+
+  // ---------- 3b) mapa de clique ----------
+  // Registra qualquer clique na pagina, nao so o botao de WhatsApp.
+  // Guarda a posicao em porcentagem da largura e da altura TOTAIS da pagina,
+  // para o painel conseguir desenhar o mapa em qualquer tamanho de tela.
+  // Teto por visita para nao inundar a planilha.
+  var cliquesEnviados = 0;
+  var TETO_CLIQUES = 40;
+
+  function alvoClicavel(el) {
+    if (!el || !el.closest) return el;
+    return el.closest('a,button,input,select,textarea,label,[role="button"],[onclick]') || el;
+  }
+
+  function nomeDoAlvo(el) {
+    if (!el) return '';
+    var texto = (el.textContent || '').replace(/\s+/g, ' ').trim();
+    if (texto) return texto.slice(0, 60);
+    var alt = el.getAttribute && (el.getAttribute('aria-label') || el.getAttribute('alt') || el.getAttribute('title'));
+    if (alt) return String(alt).trim().slice(0, 60);
+    return '<' + (el.tagName || '?').toLowerCase() + '>';
+  }
+
+  document.addEventListener('click', function (evento) {
+    if (cliquesEnviados >= TETO_CLIQUES) return;
+    var alvo = evento.target;
+    if (!alvo || alvo.nodeType !== 1) return;
+    // o botao de WhatsApp ja tem evento proprio; nao contar duas vezes
+    if (alvo.closest && alvo.closest('a[href*="wa.me"]')) return;
+    cliquesEnviados++;
+
+    var x = '', y = '';
+    try {
+      var largura = document.documentElement.scrollWidth || window.innerWidth || 1;
+      var altura = document.documentElement.scrollHeight || 1;
+      x = Math.round(((evento.pageX || 0) / largura) * 1000) / 10;
+      y = Math.round(((evento.pageY || 0) / altura) * 1000) / 10;
+    } catch (e) {}
+
+    enviar(Object.assign({
+      type: 'click',
+      secao: secaoDoElemento(alvo),
+      textoBotao: nomeDoAlvo(alvoClicavel(alvo)),
+      posicao: x + ',' + y,
+      numero: window.innerWidth || '',
+      rolagem: maiorRolagem + '%'
+    }, contexto()), true);
   }, true);
 
   // ---------- 4) saida da pagina ----------
