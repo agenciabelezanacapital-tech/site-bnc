@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "tempo-de-resposta-whatsapp-salao": {
+      "published_at": "2026-10-05T11:24:10.093Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7Jtd77YFfLrHKW8EB1EgzYFkwAL4",
+      "commit": "9e178ee1e087a9ee630a2b240aafc8d69837e6a8"
+    },
     "custo-por-agendamento-salao-de-beleza": {
       "published_at": "2026-10-04T11:17:12.344Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/jXNZ7taLuYLctEkzU37q6FLKvMD2",
