@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de conversão · PCB Advogados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D0D0D; --bg2:#111111; --card:#1A1A1A; --border:#2A2A2A;
+  --gold:#C9A96E; --gold-light:#E8C99A;
+  --white:#FFFFFF; --muted:#9A9A9A;
+  --green:#5FBF7F; --amber:#E0A83D; --red:#D9534F;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Poppins',sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+section{padding:80px 0;border-bottom:1px solid var(--border)}
+.label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:18px;display:block}
+h1{font-size:clamp(30px,5vw,52px);font-weight:200;line-height:1.15;letter-spacing:-.02em}
+h2{font-size:clamp(24px,3.4vw,36px);font-weight:200;line-height:1.2;letter-spacing:-.01em;margin-bottom:22px}
+h3{font-size:17px;font-weight:500;margin-bottom:10px;letter-spacing:.01em}
+h4{font-size:14px;font-weight:500;color:var(--gold-light);margin-bottom:8px;letter-spacing:.02em}
+p{color:var(--muted);font-size:15px}
+p+p{margin-top:14px}
+strong{color:var(--white);font-weight:500}
+em{color:var(--gold-light);font-style:normal;font-weight:400}
+
+/* HERO */
+.hero{padding:110px 0 90px;border-bottom:1px solid var(--border);background:
+  radial-gradient(900px 380px at 15% -10%, rgba(201,169,110,.10), transparent 65%),
+  linear-gradient(180deg,#111 0%, var(--bg) 100%)}
+.brandbar{display:flex;align-items:center;gap:14px;margin-bottom:44px}
+.brandbar .dot{width:7px;height:7px;background:var(--gold);border-radius:50%}
+.brandbar span{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.hero h1 em{color:var(--gold)}
+.hero .sub{margin-top:26px;max-width:720px;font-size:16px;color:var(--muted)}
+.metaline{margin-top:38px;display:flex;flex-wrap:wrap;gap:10px}
+.pill{border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:999px;padding:7px 16px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+
+/* SCORE */
+.scoreblock{display:grid;grid-template-columns:230px 1fr;gap:44px;align-items:center;margin:0 0 44px}
+.gauge{position:relative;width:230px;height:230px}
+.gauge svg{transform:rotate(-90deg)}
+.gauge .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge .num{font-size:56px;font-weight:200;line-height:1;color:var(--gold)}
+.gauge .den{font-size:12px;color:var(--muted);letter-spacing:.18em;margin-top:8px}
+.gauge .tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-top:10px;font-weight:500}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px}
+.kpi .n{font-size:30px;font-weight:200;color:var(--gold);line-height:1}
+.kpi .n small{font-size:14px;color:var(--muted)}
+.kpi .t{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.kpi .bar{height:3px;background:#232323;border-radius:2px;margin-top:14px;overflow:hidden}
+.kpi .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+
+.callout{border-left:2px solid var(--gold);background:linear-gradient(90deg,rgba(201,169,110,.07),transparent);padding:22px 26px;border-radius:0 12px 12px 0;margin-top:34px}
+.callout p{color:#d6d6d6}
+.callout.red{border-left-color:var(--red);background:linear-gradient(90deg,rgba(217,83,79,.09),transparent)}
+
+/* CARDS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.card .idx{font-size:11px;letter-spacing:.22em;color:var(--gold);font-weight:500;margin-bottom:14px;display:block}
+.card p{font-size:14px}
+
+/* STATUS */
+.st{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:5px 12px;border-radius:999px;border:1px solid}
+.st.ok{color:var(--green);border-color:rgba(95,191,127,.35);background:rgba(95,191,127,.08)}
+.st.warn{color:var(--amber);border-color:rgba(224,168,61,.35);background:rgba(224,168,61,.08)}
+.st.bad{color:var(--red);border-color:rgba(217,83,79,.35);background:rgba(217,83,79,.08)}
+
+/* IA ROWS */
+.ia{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px 28px;margin-bottom:16px}
+.ia .top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:16px}
+.ia .name{font-size:18px;font-weight:400}
+.ia .name small{display:block;font-size:12px;color:var(--muted);font-weight:300;margin-top:2px}
+.iagrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-top:18px;border-top:1px solid var(--border)}
+
+/* PILAR */
+.pilar{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:18px}
+.pilar .head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 28px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.pilar .head .l{display:flex;align-items:center;gap:16px}
+.pilar .icon{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-size:18px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.25)}
+.pilar .score{font-size:24px;font-weight:200;color:var(--gold)}
+.pilar .score small{font-size:12px;color:var(--muted)}
+.pilar .body{padding:24px 28px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pilar .body p{font-size:13.5px}
+
+/* PLANO */
+.etapa{display:grid;grid-template-columns:60px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid var(--border)}
+.etapa:last-child{border-bottom:none}
+.etapa .num{font-size:38px;font-weight:200;color:#2E2E2E;line-height:1}
+.acao{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-top:14px}
+.acao h4{color:var(--white);font-weight:500;font-size:14.5px;margin-bottom:6px}
+.acao p{font-size:13.5px}
+.prio{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+/* COMP */
+.comp{width:100%;border-collapse:collapse;margin-top:22px}
+.comp th{text-align:left;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:12px 14px;border-bottom:1px solid var(--border)}
+.comp td{padding:14px;border-bottom:1px solid #1F1F1F;font-size:14px;color:var(--muted)}
+.comp td:first-child{color:var(--white);font-weight:400}
+.comp tr.us td{background:rgba(217,83,79,.06)}
+.comp tr.us td:first-child{color:var(--gold)}
+
+footer{padding:56px 0;text-align:center}
+footer .fdot{width:6px;height:6px;background:var(--gold);border-radius:50%;margin:0 auto 18px}
+footer p{font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+footer p.small{text-transform:none;letter-spacing:0;font-size:12px;margin-top:10px;color:#5E5E5E}
+
+@media(max-width:860px){
+  .scoreblock{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .kpis{grid-template-columns:1fr 1fr}
+  .grid2,.grid3,.iagrid,.pilar .body{grid-template-columns:1fr}
+  section{padding:56px 0}
+  .etapa{grid-template-columns:1fr;gap:8px}
+  .comp th:nth-child(3),.comp td:nth-child(3){display:none}
+}
+
+.tabela{width:100%;border-collapse:collapse;margin-top:22px}
+.tabela th{text-align:left;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:12px 14px;border-bottom:1px solid var(--border)}
+.tabela td{padding:12px 14px;border-bottom:1px solid #1F1F1F;font-size:14px;color:var(--muted)}
+.tabela td:first-child{color:var(--white);font-weight:400}
+.lista{list-style:none;margin-top:14px}
+.lista li{color:var(--muted);font-size:14px;padding-left:18px;position:relative;margin-bottom:8px}
+.lista li:before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.lista li strong{color:var(--white);font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar"><div class="dot"></div><span>Agência Beleza na Capital</span></div>
+    <span class="label">Análise de conversão · PCB Advogados Associados</span>
+    <h1>O site recebe a visita,<br>mas não recebe <em>a conversa</em>.</h1>
+    <p class="sub">Em 55 dias de campanha o Google entregou 68 visitas qualificadas ao site do escritório, a um custo médio de R$ 13,85 por visita. A página recebeu essas pessoas com uma única porta de saída, nenhuma prova de que o escritório é bom e nenhuma resposta às duas perguntas que travam qualquer contratação: quanto custa e quanto demora. Esta análise percorre site, campanha e perfil do Google para mostrar onde a conversa está sendo perdida.</p>
+    <div class="metaline">
+      <div class="pill">Direito de Família e Sucessões · Brasília/DF</div>
+      <div class="pill">site-pcb.vercel.app</div>
+      <div class="pill">Período analisado: 08/08 a 04/10/2026</div>
+      <div class="pill">Análise de outubro de 2026</div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <span class="label">01 · Resumo Executivo</span>
+    <h2>Prontidão de conversão do site</h2>
+
+    <div class="scoreblock">
+      <div class="gauge">
+        <svg width="230" height="230" viewBox="0 0 230 230">
+          <circle cx="115" cy="115" r="100" fill="none" stroke="#232323" stroke-width="12"/>
+          <circle cx="115" cy="115" r="100" fill="none" stroke="#C9A96E" stroke-width="12" stroke-linecap="round" stroke-dasharray="628.3" stroke-dashoffset="458.7"/>
+        </svg>
+        <div class="val">
+          <div class="num">27</div>
+          <div class="den">DE 100</div>
+          <div class="tag">Zona crítica</div>
+        </div>
+      </div>
+      <div>
+        <p>O site é bem escrito, bonito e tecnicamente limpo. O problema não é qualidade, é <strong>função</strong>. Ele foi construído como uma peça de apresentação do escritório e não como uma máquina de captar contato. Quem chega pelo anúncio precisa percorrer duas seções de discurso antes de encontrar a própria área que pesquisou, não vê nenhuma prova de que o escritório é confiável, não descobre quanto custa nem quanto demora, e só tem um caminho possível para falar: abrir uma conversa de WhatsApp.</p>
+        <p>A nota acima soma seis critérios de prontidão. Três deles estão praticamente zerados, e são justamente os que mais pesam na decisão de alguém que está com um problema de família na mão: <em>prova social, caminhos de contato e clareza da oferta</em>.</p>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="n">00<small>/20</small></div><div class="t">Prova social</div><div class="bar"><i style="width:0%"></i></div></div>
+      <div class="kpi"><div class="n">05<small>/20</small></div><div class="t">Caminhos de contato</div><div class="bar"><i style="width:25%"></i></div></div>
+      <div class="kpi"><div class="n">06<small>/15</small></div><div class="t">Clareza da oferta</div><div class="bar"><i style="width:40%"></i></div></div>
+      <div class="kpi"><div class="n">05<small>/15</small></div><div class="t">Anúncio x página</div><div class="bar"><i style="width:33%"></i></div></div>
+      <div class="kpi"><div class="n">09<small>/15</small></div><div class="t">Base técnica</div><div class="bar"><i style="width:60%"></i></div></div>
+      <div class="kpi"><div class="n">02<small>/15</small></div><div class="t">Medição</div><div class="bar"><i style="width:13%"></i></div></div>
+    </div>
+
+    <div class="callout red">
+      <p><strong>O achado mais grave:</strong> o escritório tem <strong>51 avaliações no Google, todas de 5 estrelas, todas respondidas</strong>. É um ativo que concorrente nenhum da região tem com essa consistência. O site não exibe uma única delas. A pessoa sai de uma busca onde viu a nota 5,0, cai numa página que não repete essa informação em lugar nenhum, e precisa decidir sozinha se confia. Essa é, isoladamente, a maior perda de conversa do funil.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="label">02 · O Funil Hoje</span>
+    <h2>O que entra, o que sai e onde some</h2>
+    <p style="max-width:780px">Números reais da conta de Google Ads entre 08 de agosto e 04 de outubro, somados ao que o perfil do Google registra. Importante: as conversões abaixo não são só do site. Elas misturam clique no WhatsApp da página, ligação pelo perfil do Google e pedido de rota no mapa, porque as três ações estão marcadas como principais na conta.</p>
+
+    <table class="tabela">
+      <thead><tr><th>Etapa</th><th>Volume</th><th>Taxa</th><th>Leitura</th></tr></thead>
+      <tbody>
+        <tr><td>Impressões na busca</td><td>2.526</td><td>33,6% das buscas disponíveis</td><td>O escritório aparece em uma a cada três buscas da especialidade</td></tr>
+        <tr><td>Cliques no anúncio</td><td>68</td><td>CTR 2,69%</td><td>Dentro do normal para advocacia, mas caro: R$ 13,85 por visita</td></tr>
+        <tr><td>Visitas que chegam ao site</td><td>68</td><td>R$ 941,62 investidos</td><td>Toda a verba do período para colocar 68 pessoas na página</td></tr>
+        <tr><td>Conversões registradas</td><td>15</td><td>R$ 62,77 cada</td><td>Soma de WhatsApp do site, ligações e rotas do perfil do Google</td></tr>
+        <tr><td>Contato por WhatsApp vindo do site</td><td>indeterminado</td><td>sem medição própria</td><td>O site não tem Analytics instalado, só a tag de conversão do Ads</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>A primeira correção não é de design, é de instrumentação.</strong> Hoje ninguém consegue dizer quantas pessoas chegaram ao fim da página, quantas abriram o FAQ, quantas clicaram no botão flutuante e desistiram no WhatsApp. O site tem apenas a tag de conversão do Google Ads. Sem Analytics e sem eventos, qualquer melhoria vira aposta, e nenhuma melhoria pode ser provada.</p>
+    </div>
+
+    <div class="callout red">
+      <p><strong>Atenção operacional:</strong> a campanha PESQUISA - SITE - SERVIÇOS está <strong>pausada</strong> na conta neste momento. Enquanto ela estiver assim, o site não recebe visita paga nenhuma e o perfil perde o reforço que o anúncio dava nas buscas da região.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="label">03 · Diagnóstico</span>
+    <h2>Por que o clique não vira conversa</h2>
+    <p style="max-width:780px;margin-bottom:34px">Seis causas, em ordem de impacto. Cada uma tem a constatação, o efeito que ela produz em quem está do outro lado da tela e a correção concreta.</p>
+
+    ('<div class="pilar">\n  <div class="head"><div class="l"><div class="icon">A</div><div><h3 style="margin:0">Nenhuma prova social na página</h3></div></div><div class="score">0/20</div></div>\n  <div class="body">\n    <div><h4>O que foi identificado</h4><p>O site tem 26 chamadas para o WhatsApp e zero depoimentos, zero menção à nota do Google, zero contagem de avaliações. As 51 avaliações cinco estrelas existem apenas no perfil do Google.</p></div>\n    <div><h4>Impacto na conversa</h4><p>Quem procura advogado de família está entregando a vida privada a um desconhecido. Sem prova de terceiro, a página pede confiança sem oferecer motivo. A hesitação vira aba fechada.</p></div>\n    <div><h4>O que fazer</h4><p>Bloco de prova social logo abaixo do primeiro CTA: nota 5,0, contagem de avaliações, três depoimentos reais do Google com nome e trecho, e selo com link para o perfil.</p></div>\n  </div>\n</div>',)
+
+    ('<div class="pilar">\n  <div class="head"><div class="l"><div class="icon">B</div><div><h3 style="margin:0">Uma única porta de contato</h3></div></div><div class="score">5/20</div></div>\n  <div class="body">\n    <div><h4>O que foi identificado</h4><p>Todas as 26 chamadas levam ao mesmo lugar: abrir conversa no WhatsApp. Não existe formulário, não existe telefone clicável, não existe agendamento.</p></div>\n    <div><h4>Impacto na conversa</h4><p>Abrir WhatsApp é um ato de exposição: a pessoa entrega o número e inicia um diálogo que vai exigir resposta imediata. Quem está no trabalho, de madrugada ou ainda pesquisando não faz isso. E simplesmente não tem outra opção.</p></div>\n    <div><h4>O que fazer</h4><p>Adicionar duas portas: formulário curto de três campos (nome, WhatsApp, o que está acontecendo) e telefone clicável no topo. Mantém o WhatsApp como principal, mas para de perder quem não quer conversar agora.</p></div>\n  </div>\n</div>',)
+
+    ('<div class="pilar">\n  <div class="head"><div class="l"><div class="icon">C</div><div><h3 style="margin:0">A oferta não responde preço nem prazo</h3></div></div><div class="score">6/15</div></div>\n  <div class="body">\n    <div><h4>O que foi identificado</h4><p>O site cita que preço e prazo são dúvidas legítimas, e não responde nenhuma das duas. A primeira consulta sem custo, que o escritório oferece e que está descrita no perfil do Google, não aparece em lugar nenhum da página.</p></div>\n    <div><h4>Impacto na conversa</h4><p>As duas objeções campeãs do próprio cliente são custo e demora. A página admite as objeções e deixa a pessoa sem resposta, que é pior do que não citar. O visitante sai para pesquisar preço em outro lugar.</p></div>\n    <div><h4>O que fazer</h4><p>Declarar com clareza o que acontece no primeiro contato e que ele não tem custo, em linguagem compatível com o Código de Ética da OAB, e explicar faixas de prazo por tipo de procedimento.</p></div>\n  </div>\n</div>',)
+
+    ('<div class="pilar">\n  <div class="head"><div class="l"><div class="icon">D</div><div><h3 style="margin:0">Anúncio de inventário leva para uma página de divórcio</h3></div></div><div class="score">5/15</div></div>\n  <div class="body">\n    <div><h4>O que foi identificado</h4><p>Existe uma campanha, um grupo de anúncios e uma página única para quatro assuntos diferentes. Quem busca inventário, guarda ou pensão cai no mesmo topo, que fala de família, patrimônio e futuro de forma genérica.</p></div>\n    <div><h4>Impacto na conversa</h4><p>A pessoa não lê a palavra que digitou nos primeiros três segundos. Isso aumenta o abandono imediato e também encarece o clique, porque o Google cobra mais de anúncios com baixa relevância entre busca, anúncio e página.</p></div>\n    <div><h4>O que fazer</h4><p>Quatro páginas de destino, uma por área, com o título repetindo a busca da pessoa, e quatro grupos de anúncios apontando cada um para a sua.</p></div>\n  </div>\n</div>',)
+
+    ('<div class="pilar">\n  <div class="head"><div class="l"><div class="icon">E</div><div><h3 style="margin:0">Ordem da página contraria a urgência do visitante</h3></div></div><div class="score">6/15</div></div>\n  <div class="body">\n    <div><h4>O que foi identificado</h4><p>A sequência é: dores, diferenciais do escritório, áreas de atuação, sócios, como funciona, dúvidas. A área que a pessoa pesquisou é a quarta seção, depois de 2.296 palavras de leitura disponível e duas seções de discurso institucional.</p></div>\n    <div><h4>Impacto na conversa</h4><p>Quem chega com um problema quer confirmação de que ali resolve o problema dela. A página oferece primeiro empatia genérica e depois a confirmação. Grande parte decide antes de chegar na confirmação.</p></div>\n    <div><h4>O que fazer</h4><p>Subir as áreas de atuação para logo abaixo do topo, com quatro blocos clicáveis, e empurrar o discurso institucional para depois da prova social.</p></div>\n  </div>\n</div>',)
+
+    ('<div class="pilar">\n  <div class="head"><div class="l"><div class="icon">F</div><div><h3 style="margin:0">O conteúdo nasce invisível e o endereço não é do escritório</h3></div></div><div class="score">9/15</div></div>\n  <div class="body">\n    <div><h4>O que foi identificado</h4><p>Todas as seções começam com opacidade zero e só aparecem via JavaScript ao rolar. As imagens somam 2 MB. O site roda em site-pcb.vercel.app, endereço que não é do escritório.</p></div>\n    <div><h4>Impacto na conversa</h4><p>Em 4G fraco, que é a realidade de boa parte de Ceilândia e Samambaia, a primeira tela pode aparecer vazia por um instante. E a barra de endereço com nome de plataforma gratuita derruba a percepção de solidez de um escritório que cobra honorários.</p></div>\n    <div><h4>O que fazer</h4><p>Fazer o conteúdo nascer visível e animar só como enfeite, comprimir as imagens e registrar o domínio próprio, apontando o site para ele.</p></div>\n  </div>\n</div>',)
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="label">04 · O Site Peça por Peça</span>
+    <h2>Estrutura, design, cores e texto</h2>
+
+    <div class="grid2">
+      <div class="card">
+        <span class="idx">ESTRUTURA</span>
+        <h3>Página única de 2.296 palavras</h3>
+        <p>Nove seções em rolagem contínua, sem nenhuma página interna. Funciona como apresentação institucional e falha como destino de anúncio, porque não existe versão curta para quem só quer saber se o escritório resolve o problema dele. Também limita o SEO: um domínio com uma página só disputa pouquíssimos termos.</p>
+      </div>
+      <div class="card">
+        <span class="idx">DESIGN E CORES</span>
+        <h3>A paleta está certa, o contraste não</h3>
+        <p>Azul petróleo escuro com dourado champanhe passa seriedade e combina com advocacia de família, sem o clichê de madeira e martelo. O problema é funcional: o botão verde de WhatsApp é o único elemento de cor quente e aparece 26 vezes, o que anula o destaque. Nada na página indica visualmente qual é a ação mais importante.</p>
+      </div>
+      <div class="card">
+        <span class="idx">TEXTO</span>
+        <h3>Boa escrita, hierarquia errada</h3>
+        <p>O texto acerta o tom: linguagem simples, sem juridiquês, sem promessa de resultado, dentro do que a OAB permite. O erro é de ordem e de foco. O título fala de clareza antes de decidir, um conceito abstrato, quando poderia nomear o problema concreto que a pessoa digitou. E o texto explica o método do escritório antes de provar competência.</p>
+      </div>
+      <div class="card">
+        <span class="idx">CHAMADAS</span>
+        <h3>Vinte e seis botões dizendo quase a mesma coisa</h3>
+        <p>Contar minha situação, entender meu caso, conhecer o atendimento, perguntar no WhatsApp. São variações do mesmo convite para conversar, sem nenhuma redução de risco em volta: não dizem se é gratuito, quanto tempo leva a resposta, nem quem vai responder. Um botão com promessa clara converte mais do que vinte e seis sem promessa.</p>
+      </div>
+      <div class="card">
+        <span class="idx">MEDIÇÃO</span>
+        <h3>Site sem Analytics</h3>
+        <p>Existe apenas a tag de conversão do Google Ads, que dispara no clique do WhatsApp. Não há GA4, não há eventos de rolagem, nem registro de qual seção a pessoa estava quando clicou ou desistiu. É impossível saber se o problema está no topo, no meio ou no fim da página.</p>
+      </div>
+      <div class="card">
+        <span class="idx">SEO E IA</span>
+        <h3>Fundação pronta, conteúdo ausente</h3>
+        <p>O site já tem dados estruturados de escritório de advocacia, FAQ marcado, llms.txt e robots liberando as IAs. É uma base acima da média. Só que o sitemap tem uma única URL. Não há nada para indexar, nada para citar e nada que sustente busca orgânica. É uma casa com alicerce e sem cômodos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="label">05 · Google Ads</span>
+    <h2>O que a campanha está comprando</h2>
+
+    <div class="ia">
+      <div class="top"><div class="name">Estrutura da conta<small>1 campanha · 1 grupo · 1 anúncio · 130 palavras-chave</small></div><span class="st bad">Crítico</span></div>
+      <div class="iagrid">
+        <div><h4>Por que está assim</h4><p>Divórcio, inventário, guarda e pensão convivem no mesmo grupo, servidos pelo mesmo anúncio. O Google avalia relevância entre busca, anúncio e página, e cobra mais caro quando ela é baixa: 38,67% das impressões disponíveis foram perdidas por posição, não por falta de verba.</p></div>
+        <div><h4>O que mudaria o jogo</h4><p>Quatro grupos temáticos, cada um com seu anúncio e sua página. É a mudança que puxa o custo por clique para baixo e, junto com o site, o custo por contato.</p></div>
+      </div>
+    </div>
+
+    <div class="ia">
+      <div class="top"><div class="name">Medição de conversão<small>3 ações marcadas como principais</small></div><span class="st warn">Atenção</span></div>
+      <div class="iagrid">
+        <div><h4>Por que está assim</h4><p>Clique no WhatsApp, ligação pelo perfil e pedido de rota contam juntos. O número fica inflado e a estratégia automática de lance otimiza para um conjunto que inclui rota no mapa, que não é contato comercial.</p></div>
+        <div><h4>O que mudaria o jogo</h4><p>Deixar como principal apenas WhatsApp e ligação, e instalar GA4 com evento próprio de clique no WhatsApp para enxergar o que vem do site e o que vem do perfil.</p></div>
+      </div>
+    </div>
+
+    <div class="ia">
+      <div class="top"><div class="name">Situação atual da veiculação<small>Campanha pausada na conta</small></div><span class="st bad">Parada</span></div>
+      <div class="iagrid">
+        <div><h4>Por que está assim</h4><p>A campanha aparece como pausada. Sem veiculação não há visita paga, e o aprendizado da estratégia de lance esfria a cada dia parado.</p></div>
+        <div><h4>O que mudaria o jogo</h4><p>Definir se a pausa foi decisão ou esquecimento. Se for para retomar, melhor retomar depois das correções do site, para não comprar visita cara para a mesma página.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="label">06 · Google Meu Negócio</span>
+    <h2>O ativo mais forte do escritório está subaproveitado</h2>
+
+    <table class="tabela">
+      <thead><tr><th>Item</th><th>Situação</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Avaliações</td><td>51 no total, média 5,0, todas respondidas</td><td><span class="st ok">Excelente</span></td></tr>
+        <tr><td>Ritmo de avaliações</td><td>Última avaliação em 01/09, mais de um mês sem nenhuma nova</td><td><span class="st warn">Atenção</span></td></tr>
+        <tr><td>Verificação do perfil</td><td>Não concluída, o que bloqueia envio de fotos pela API</td><td><span class="st bad">Crítico</span></td></tr>
+        <tr><td>Publicações</td><td>Três posts enviados em 21/09 seguem em processamento, sem entrar no ar</td><td><span class="st bad">Travado</span></td></tr>
+        <tr><td>Galeria de fotos</td><td>Seis imagens, nenhuma da equipe e nenhuma recente</td><td><span class="st warn">Atenção</span></td></tr>
+        <tr><td>Serviços cadastrados</td><td>Cinco itens genéricos, sem divórcio, inventário, guarda ou pensão</td><td><span class="st warn">Atenção</span></td></tr>
+        <tr><td>Horário</td><td>Perfil diz 8h às 18h, site e descrição dizem 9h às 19h</td><td><span class="st warn">Divergente</span></td></tr>
+        <tr><td>Descrição e área de atendimento</td><td>Completas, com as regiões certas e a consulta gratuita citada</td><td><span class="st ok">Boa</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>Duas correções no perfil valem mais que qualquer ajuste de lance.</strong> Concluir a verificação destrava fotos e publicações, que é o que mantém o perfil vivo aos olhos do Google. E retomar o pedido de avaliação ao fim de cada caso resolvido recoloca o ritmo: 51 avaliações cinco estrelas que param de crescer começam a envelhecer na comparação com concorrentes que seguem coletando.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="label">07 · Blog com Publicação Automática</span>
+    <h2>Transformar as dúvidas dos clientes em tráfego gratuito</h2>
+    <p style="max-width:800px">Hoje cada visita custa R$ 13,85 e acaba quando a verba acaba. O blog resolve outro problema: capturar quem pesquisa a dúvida antes de pesquisar o advogado. Quem digita "quanto tempo demora um inventário" ainda não está procurando escritório, mas vai precisar de um. O conteúdo é o que coloca o PCB na frente dessa pessoa semanas antes do concorrente.</p>
+
+    <div class="grid3" style="margin-top:30px">
+      <div class="card"><span class="idx">COMO FUNCIONA</span><h3>Mesma esteira do site da BNC</h3><p>A publicação é automática: a pauta é escrita, o artigo entra no repositório com data programada, o índice do blog, o sitemap e o RSS se atualizam sozinhos e o site publica. É a mesma mecânica que hoje mantém 49 artigos no ar no site da agência.</p></div>
+      <div class="card"><span class="idx">FORMATO</span><h3>Pergunta real, resposta completa</h3><p>Cada artigo responde uma dúvida concreta em 1.200 a 1.800 palavras, com dados estruturados de artigo e de FAQ, link para a área de atuação correspondente e uma chamada no fim para falar com o escritório. Sem promessa de resultado, dentro do Código de Ética.</p></div>
+      <div class="card"><span class="idx">RITMO</span><h3>Dois artigos por semana</h3><p>Em três meses são 24 páginas disputando termos que hoje o escritório só alcança pagando. O efeito é cumulativo: artigo publicado continua trazendo visita por anos, e alimenta também as respostas do ChatGPT e do Gemini, que já estão liberados no robots do site.</p></div>
+    </div>
+
+    <h3 style="margin-top:44px">Primeiras 18 pautas, tiradas das buscas reais da campanha</h3>
+    <p style="max-width:800px">As pautas abaixo não foram inventadas. Saíram dos termos que pessoas de verdade digitaram no Google e que fizeram o anúncio do PCB aparecer nos últimos dois meses.</p>
+    <table class="tabela">
+      <thead><tr><th>Pauta</th><th>Termo-alvo</th><th>Prioridade</th></tr></thead>
+      <tbody><tr><td>Divórcio consensual x litigioso: qual caminho serve para o seu caso</td><td>advogado de divórcio brasília</td><td>Alta</td></tr><tr><td>Divórcio em cartório: quando é possível e quanto tempo leva</td><td>divórcio em cartório</td><td>Alta</td></tr><tr><td>Quanto custa um divórcio no Distrito Federal</td><td>quanto custa advogado para divórcio</td><td>Alta</td></tr><tr><td>Quais bens entram na partilha segundo o regime de bens</td><td>partilha de bens divórcio</td><td>Alta</td></tr><tr><td>Inventário extrajudicial: as três condições que o Google não explica</td><td>inventário extrajudicial</td><td>Alta</td></tr><tr><td>Prazo para abrir inventário e o que acontece se passar</td><td>prazo abertura inventário</td><td>Média</td></tr><tr><td>Quanto tempo demora um inventário em Brasília</td><td>quanto tempo demora um inventário</td><td>Média</td></tr><tr><td>Herdeiro menor de idade: por que o inventário muda de via</td><td>inventário com herdeiro menor</td><td>Média</td></tr><tr><td>Guarda compartilhada não é dividir o tempo meio a meio</td><td>guarda compartilhada</td><td>Alta</td></tr><tr><td>Como conseguir a guarda do filho: o que o juiz analisa</td><td>como conseguir a guarda do filho</td><td>Alta</td></tr><tr><td>Guarda unilateral: requisitos e quando ela é concedida</td><td>guarda unilateral requisitos</td><td>Média</td></tr><tr><td>Alienação parental: como identificar e o que fazer</td><td>alienação parental advogado</td><td>Média</td></tr><tr><td>Como é calculada a pensão alimentícia (não existe percentual fixo)</td><td>cálculo pensão alimentícia</td><td>Alta</td></tr><tr><td>Pai não paga pensão: os caminhos de cobrança e a prisão civil</td><td>pai não paga pensão o que fazer</td><td>Alta</td></tr><tr><td>Revisão de pensão alimentícia: quando pedir aumento ou redução</td><td>revisão de pensão alimentícia</td><td>Média</td></tr><tr><td>Até que idade o filho tem direito a pensão</td><td>até quando pagar pensão</td><td>Média</td></tr><tr><td>Dissolução de união estável: partilha, pensão e prova da relação</td><td>dissolução de união estável</td><td>Média</td></tr><tr><td>Testamento e planejamento sucessório: organizar em vida o que a família herda</td><td>como fazer testamento</td><td>Média</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="label">08 · Plano de Ação</span>
+    <h2>Ordem de execução</h2>
+
+    <div class="etapa">
+      <div class="num">01</div>
+      <div>
+        <h3>Semana 1: parar de perder o que já chega</h3>
+        <div class="acao"><span class="prio">Prioridade máxima</span><h4>Prova social no site</h4><p>Bloco com nota 5,0, contagem de avaliações e três depoimentos reais do Google, logo abaixo do primeiro bloco da página.</p></div>
+        <div class="acao"><span class="prio">Prioridade máxima</span><h4>Segunda e terceira portas de contato</h4><p>Formulário de três campos e telefone clicável no topo, mantendo o WhatsApp como caminho principal.</p></div>
+        <div class="acao"><span class="prio">Prioridade máxima</span><h4>GA4 e eventos</h4><p>Analytics instalado com evento de clique em WhatsApp, envio de formulário, clique em telefone e profundidade de rolagem.</p></div>
+      </div>
+    </div>
+
+    <div class="etapa">
+      <div class="num">02</div>
+      <div>
+        <h3>Semana 2: arrumar a oferta e a ordem</h3>
+        <div class="acao"><span class="prio">Prioridade alta</span><h4>Primeiro contato sem custo, dito com todas as letras</h4><p>Explicar o que acontece na primeira conversa, quanto tempo leva a resposta e quem responde, em linguagem compatível com a OAB.</p></div>
+        <div class="acao"><span class="prio">Prioridade alta</span><h4>Áreas de atuação logo abaixo do topo</h4><p>Quatro blocos clicáveis, com o discurso institucional reposicionado depois da prova social.</p></div>
+        <div class="acao"><span class="prio">Prioridade alta</span><h4>Conteúdo visível sem depender de JavaScript</h4><p>Correção da animação de entrada e compressão das imagens.</p></div>
+      </div>
+    </div>
+
+    <div class="etapa">
+      <div class="num">03</div>
+      <div>
+        <h3>Semanas 3 e 4: alinhar anúncio e página</h3>
+        <div class="acao"><span class="prio">Prioridade alta</span><h4>Quatro páginas por área e quatro grupos de anúncios</h4><p>Divórcio e partilha, inventário e sucessões, guarda e convivência, pensão alimentícia, cada um com anúncio e destino próprios.</p></div>
+        <div class="acao"><span class="prio">Prioridade média</span><h4>Conversões limpas na conta</h4><p>Apenas WhatsApp e ligação como principais, com o pedido de rota saindo da contagem.</p></div>
+        <div class="acao"><span class="prio">Prioridade média</span><h4>Domínio próprio</h4><p>Registro e apontamento do domínio do escritório no lugar do endereço da plataforma.</p></div>
+      </div>
+    </div>
+
+    <div class="etapa">
+      <div class="num">04</div>
+      <div>
+        <h3>A partir do mês 2: construir o ativo que não depende de verba</h3>
+        <div class="acao"><span class="prio">Prioridade média</span><h4>Blog no ar com publicação automática</h4><p>Estrutura publicada e as primeiras seis pautas no ar, no ritmo de dois artigos por semana.</p></div>
+        <div class="acao"><span class="prio">Prioridade média</span><h4>Perfil do Google destravado</h4><p>Verificação concluída, fotos e publicações voltando a entrar, e rotina de pedido de avaliação ao fim de cada caso.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fdot"></div>
+  <p>Agência Beleza na Capital · Análise de conversão PCB Advogados · Outubro de 2026</p>
+  <p class="small">Dados de Google Ads e Google Meu Negócio extraídos via API em 05/10/2026. Período analisado: 08/08 a 04/10/2026.</p>
+</footer>
+
+</body>
+</html>
