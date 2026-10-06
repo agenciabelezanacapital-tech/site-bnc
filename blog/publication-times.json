@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "margem-de-contribuicao-salao-de-beleza": {
+      "published_at": "2026-10-06T11:45:30.424Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/8wRHzJXhBVT12TWUbwoAXT5dbDD7",
+      "commit": "7639b5be531b67b3d8d05264976b2564eb0cf04f"
+    },
     "tempo-de-resposta-whatsapp-salao": {
       "published_at": "2026-10-05T11:24:10.093Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/7Jtd77YFfLrHKW8EB1EgzYFkwAL4",
