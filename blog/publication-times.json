@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "mensagem-pedir-avaliacao-google-salao": {
+      "published_at": "2026-10-14T12:02:47.351Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/2CYuAzsw9ZsYvZmpaCTirRexws1R",
+      "commit": "3931373eb15e51528b10027e4cdd124ea079ac39"
+    },
     "margem-de-contribuicao-salao-de-beleza": {
       "published_at": "2026-10-06T11:45:30.424Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/8wRHzJXhBVT12TWUbwoAXT5dbDD7",
