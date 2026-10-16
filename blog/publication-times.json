@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "o-que-postar-perfil-empresa-google-salao": {
+      "published_at": "2026-10-16T11:57:01.738Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/E2Qfc2SyzRRWgrqsBaBQ5DrBWPJs",
+      "commit": "4ec2e22b008c4cba87d854012852d95ca1877d92"
+    },
     "cliente-atrasado-salao-politica-tolerancia": {
       "published_at": "2026-10-15T11:45:12.656Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5afoj1ZH75Wy3REoVwCrz79hVMdB",
