@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "reuniao-indicadores-salao-de-beleza": {
+      "published_at": "2026-10-17T11:42:26.624Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/CLny2DAZDm5sf3vuB91KvP2XVtj1",
+      "commit": "d893dfaf3414e714d672690fb853cb1b6d4aae7d"
+    },
     "o-que-postar-perfil-empresa-google-salao": {
       "published_at": "2026-10-16T11:57:01.738Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/E2Qfc2SyzRRWgrqsBaBQ5DrBWPJs",
