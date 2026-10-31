@@ -51,3 +51,24 @@ da medição. Para conferir o site inteiro:
 for f in $(git ls-files '*.html'); do grep -q '/js/radar.js' "$f" || echo "$f"; done
 git ls-files '*.html' | xargs grep -L 'clarity.ms'
 ```
+
+## Chamadas de conversão do blog
+
+Todo artigo em `blog/` carrega, logo abaixo do `radar.js`:
+
+```html
+<script src="/js/cta-blog.js" defer></script>
+```
+
+Esse arquivo coloca a chamada de WhatsApp no meio e no fim do texto, ligada ao
+assunto do artigo, e o botão flutuante. O radar mostrou que artigo sem chamada é
+beco sem saída: a pessoa lê e vai embora. Artigo novo sem essa linha nasce sem
+porta de saída para o WhatsApp. Para conferir:
+
+```bash
+git ls-files 'blog/*/index.html' | xargs grep -L 'cta-blog.js'
+```
+
+Se o artigo for de um assunto que ainda não tem chamada própria, acrescente a
+regra no topo de `js/cta-blog.js` (lista ASSUNTOS) em vez de escrever chamada
+dentro do HTML.

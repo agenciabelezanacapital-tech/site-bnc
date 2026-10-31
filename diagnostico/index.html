@@ -53,16 +53,43 @@
         <div class="qualification-intro">
           <span class="section-label">Diagnóstico de aderência</span>
           <h1>Vamos entender o momento do seu negócio.</h1>
-          <p>As respostas abaixo ajudam a identificar o formato mais adequado para sua operação. O processo leva aproximadamente dois minutos e considera país, faturamento, equipe e capacidade de execução.</p>
+          <p>Quatro etapas rápidas para indicarmos o formato certo para a sua operação. Começa pelo seu contato e o resto leva menos de dois minutos.</p>
+          <p class="qualification-shortcut" data-secao="diagnostico-atalho">Prefere conversar direto? <a class="gold" href="https://wa.me/5561995055390?text=Ol%C3%A1!%20Estava%20no%20diagn%C3%B3stico%20do%20site%20e%20prefiro%20conversar%20direto%20pelo%20WhatsApp." target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function')gtag('event','conversion',{send_to:'AW-18156422201/R5uZCI3vyqscELmI1NFD',transport_type:'beacon'});">Chame a gente no WhatsApp</a>.</p>
         </div>
 
         <form id="qualification-form" class="qualification-form" novalidate>
           <div class="form-progress" aria-live="polite">
             <div class="form-progress-line" aria-hidden="true"><span id="progress-bar"></span></div>
-            <p id="progress-label">Etapa 1 de 4 — Mercado</p>
+            <p id="progress-label">Etapa 1 de 4 · Contato</p>
           </div>
 
-          <section class="form-step is-active" data-step="1" aria-labelledby="step-1-title">
+          <section class="form-step is-active" data-step="4" aria-labelledby="step-4-title">
+            <h2 id="step-4-title">Primeiro, como falamos com você?</h2>
+            <p class="form-step-intro">Com isso já conseguimos te responder. As próximas etapas são rápidas, quase tudo de escolher na lista.</p>
+            <div class="form-grid two-columns">
+              <div class="field">
+                <label for="name">Nome *</label>
+                <input id="name" name="name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="business-name">Nome do negócio *</label>
+                <input id="business-name" name="businessName" autocomplete="organization" required />
+              </div>
+              <div class="field">
+                <label for="phone">WhatsApp com código do país *</label>
+                <input id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="Ex.: +55 61 99999-9999" required />
+              </div>
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" autocomplete="email" />
+              </div>
+            </div>
+            <label class="consent-row" for="consent" style="margin-top:1.25rem;">
+              <input id="consent" name="consent" type="checkbox" required />
+              <span>Autorizo a Beleza na Capital a usar estas informações para analisar meu negócio e entrar em contato, conforme a <a class="gold" href="/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+            </label>
+          </section>
+          <section class="form-step" data-step="1" aria-labelledby="step-1-title">
             <h2 id="step-1-title">Onde seu negócio opera?</h2>
             <p class="form-step-intro">Usaremos a moeda e as faixas adequadas ao seu mercado.</p>
             <div class="form-grid two-columns">
@@ -88,8 +115,8 @@
                 <input id="city" name="city" autocomplete="address-level2" required />
               </div>
               <div class="field">
-                <label for="region">Estado ou região *</label>
-                <input id="region" name="region" autocomplete="address-level1" required />
+                <label for="region">Estado ou região</label>
+                <input id="region" name="region" autocomplete="address-level1" />
               </div>
             </div>
           </section>
@@ -201,32 +228,7 @@
             </div>
           </section>
 
-          <section class="form-step" data-step="4" aria-labelledby="step-4-title">
-            <h2 id="step-4-title">Como podemos falar com você?</h2>
-            <p class="form-step-intro">Esses dados serão usados somente para dar continuidade ao diagnóstico.</p>
-            <div class="form-grid two-columns">
-              <div class="field">
-                <label for="name">Nome *</label>
-                <input id="name" name="name" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="business-name">Nome do negócio *</label>
-                <input id="business-name" name="businessName" autocomplete="organization" required />
-              </div>
-              <div class="field">
-                <label for="phone">WhatsApp com código do país *</label>
-                <input id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="Ex.: +55 61 99999-9999" required />
-              </div>
-              <div class="field">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" autocomplete="email" />
-              </div>
-            </div>
-            <label class="consent-row" for="consent" style="margin-top:1.25rem;">
-              <input id="consent" name="consent" type="checkbox" required />
-              <span>Autorizo a Beleza na Capital a usar estas informações para analisar meu negócio e entrar em contato, conforme a <a class="gold" href="/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
-            </label>
-          </section>
+          
 
           <p id="form-error" class="form-error" role="alert"></p>
           <div class="form-actions">
@@ -247,6 +249,6 @@
     </div>
   </main>
 
-  <script src="/js/diagnostico.js"></script>
+  <script src="/js/diagnostico.js?v=20261031"></script>
 </body>
 </html>

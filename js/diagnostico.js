@@ -39,7 +39,10 @@
   let campoTravado = '';
   let abandonoEnviado = false;
   const inicioVisita = Date.now();
-  const NOMES_ETAPA = ['Mercado', 'Operacao', 'Objetivo', 'Contato'];
+  // A etapa de contato vem primeiro: quem desiste no meio ja deixou nome e
+  // WhatsApp, e a equipe consegue chamar mesmo sem o diagnostico completo.
+  const NOMES_ETAPA = ['Contato', 'Mercado', 'Operacao', 'Objetivo'];
+  let parcialEnviado = false;
 
   function gerarLeadId() {
     const d = new Date();
@@ -288,9 +291,9 @@
     steps.forEach((step, stepIndex) => step.classList.toggle('is-active', stepIndex === index));
     progressBar.style.width = `${((index + 1) / steps.length) * 100}%`;
     const labels = t(
-      ['Mercado', 'Operação', 'Objetivo', 'Contato'],
-      ['Market', 'Business', 'Goals', 'Contact'],
-      ['Mercado', 'Operación', 'Objetivo', 'Contacto']
+      ['Contato', 'Mercado', 'Operação', 'Objetivo'],
+      ['Contact', 'Market', 'Business', 'Goals'],
+      ['Contacto', 'Mercado', 'Operación', 'Objetivo']
     );
     progressLabel.textContent = t(
       `Etapa ${index + 1} de ${steps.length} · ${labels[index]}`,
@@ -434,10 +437,31 @@
     return `https://wa.me/5561995055390?text=${encodeURIComponent(lines.join('\n'))}`;
   }
 
+  // Grava o contato assim que a primeira etapa e vencida. Vai para a aba Leads
+  // como "Lead Parcial"; se a pessoa concluir, entra outra linha com a nota.
+  function enviarLeadParcial() {
+    if (parcialEnviado) return;
+    parcialEnviado = true;
+    const data = Object.fromEntries(new FormData(form).entries());
+    enviarParaRadar({
+      type: 'lead_parcial',
+      leadId: 'P-' + gerarLeadId(),
+      visitaId: visitaId,
+      segundos: segundosNaPagina(),
+      tier: 'Parcial',
+      score: '',
+      origem: window.location.href,
+      campos: montarCamposDoRadar(data)
+    }, false);
+  }
+
   nextButton.addEventListener('click', () => {
     if (!validateCurrentStep()) return;
-    if (currentStep === 0 && typeof window.gtag === 'function') {
-      window.gtag('event', 'diagnostic_started', { country: country.value });
+    if (currentStep === 0) {
+      enviarLeadParcial();
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'diagnostic_started', { step_name: 'Contato' });
+      }
     }
     showStep(currentStep + 1);
   });
@@ -518,6 +542,8 @@
     set('#step-3-title', 'What needs to change first?');
     set('[data-step="3"] .form-step-intro', 'This helps us focus the next conversation on the main bottleneck.');
     set('#step-4-title', 'How can we contact you?');
+    const atalho = document.querySelector('.qualification-shortcut a');
+    if (atalho) { atalho.textContent = 'Message us on WhatsApp'; atalho.previousSibling.textContent = 'Prefer to talk directly? '; }
     set('[data-step="4"] .form-step-intro', 'These details will only be used to continue your assessment.');
     const labelMap = {
       country: 'Country *', language: 'Preferred language *', city: 'City *', region: 'State or region *',
@@ -577,6 +603,8 @@
     set('#step-3-title', '¿Qué necesita cambiar primero?');
     set('[data-step="3"] .form-step-intro', 'Esto nos ayuda a enfocar la próxima conversación en el cuello de botella principal.');
     set('#step-4-title', '¿Cómo podemos contactarte?');
+    const atalho = document.querySelector('.qualification-shortcut a');
+    if (atalho) { atalho.textContent = 'Escríbenos por WhatsApp'; atalho.previousSibling.textContent = '¿Prefieres hablar directo? '; }
     set('[data-step="4"] .form-step-intro', 'Estos datos se usarán solamente para dar continuidad a tu diagnóstico.');
     const labelMap = {
       country: 'País *', language: 'Idioma preferido *', city: 'Ciudad *', region: 'Estado o región *',

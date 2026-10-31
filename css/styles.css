@@ -525,6 +525,8 @@ section { padding: 5rem 0; }
 .qualification-intro { max-width: 760px; margin-bottom: 2rem; }
 .qualification-intro h1 { margin: .5rem 0 1rem; }
 .qualification-intro p { max-width: 68ch; }
+.qualification-intro .qualification-shortcut { margin-top: .75rem; font-size: .95rem; }
+.qualification-intro .qualification-shortcut a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .qualification-form {
   padding: 1.25rem;
   background: var(--bg-card);
