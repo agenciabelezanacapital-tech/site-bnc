@@ -1,56 +1,109 @@
 # Pauta do blog, a partir do radar do site
 
-Leitura de 06/10/2026, 19h45 de Brasília. Janela: últimos 7 dias.
-Fonte: planilha "BNC — Leads do Site (Radar)", aba Funil.
-Regenerado todo dia pela tarefa agendada "Pauta do Blog BNC". Se a data acima
-não for de hoje nem de ontem, trate o dia como tema livre.
+Leitura de 07/11/2026, feita à mão a partir da aba Funil da planilha
+"BNC — Leads do Site (Radar)". Janela: 01/10 a 07/11, 1.097 eventos.
 
-## O que está sendo aberto
+**Esta pauta vale por 30 dias, até 07/12/2026.** Ela não é a leitura automática
+de 7 dias: é um bloco de tema fechado, decidido pelo Will em 07/11. Mesmo que a
+data acima envelheça, siga a lista de temas daqui até acabar.
 
-| Artigo | No ar desde | Aberturas em 7 dias | Média por dia |
-|---|---|---|---|
-| Custo por agendamento | 04/10 | 11 | 3,7 |
-| Tempo de resposta no WhatsApp | 05/10 | 7 | 3,5 |
-| Margem de contribuição | 06/10 | 5 | 5,0 |
-| Plano de ação | 26/09 | 3 | 0,3 |
-| Comissão em salão | 28/09 | 2 | 0,2 |
-| Mix de serviços | 22/09 | 2 | 0,1 |
+## O que o radar mostrou
 
-Home: 39 aberturas. Blog inteiro: 47 aberturas, 86 páginas vistas no site, 64
-visitas. Nenhum clique em botão de WhatsApp e nenhum diagnóstico concluído na
-semana.
+De 59 artigos no ar, **apenas 14 receberam alguma entrada vinda do Google** em
+36 dias. E dois deles, os dois de avaliação, carregam 34 das 57 entradas:
 
-## O que isso diz
+| Artigo | Entradas pelo Google em 36 dias |
+|---|---|
+| mensagem-pedir-avaliacao-google-salao | 28 |
+| avaliacoes-no-google-para-salao-de-beleza | 6 |
+| cliente-atrasado-salao-politica-tolerancia | 4 |
+| follow-up-para-salao-de-beleza | 3 |
+| plano-de-acao-para-salao-de-beleza | 3 |
+| categoria-perfil-empresa-google-salao | 2 |
+| tempo-de-espera-no-salao-de-beleza | 2 |
+| fluxo-de-caixa-para-salao-de-beleza | 2 |
+| meta-ads-para-barbearia | 2 |
 
-Os três artigos mais novos concentram 23 das 47 aberturas do blog, e os três
-falam da mesma coisa: **número e operação do salão**, não de marketing. Custo por
-agendamento, tempo de resposta e margem de contribuição. Os artigos antigos de
-marketing e SEO estão parados entre 0,1 e 0,3 abertura por dia.
+Dois artigos de 59 respondem por 60% de toda a busca orgânica do blog. É por
+isso que os próximos 30 dias vão aprofundar reputação e avaliação no Google.
 
-Ressalva honesta: todo artigo recebe a distribuição no Facebook no dia em que
-sai, então o primeiro dia sempre vem inflado. Mesmo descontando isso, custo por
-agendamento seguiu puxando no segundo e no terceiro dia, o que é sinal de busca,
-não só de empurrão.
+## A ressalva que precisa ficar escrita
 
-Segundo sinal, do mapa de calor: 44 das 58 saídas do site acontecem antes dos 25
-por cento da página. As pessoas leem o topo e vão embora. Vale tratar isso na
-escrita, colocando a resposta prática logo no começo do artigo, não só no fim.
+Nos mesmos 36 dias, **277 visitas leram o blog e nenhuma clicou no WhatsApp**.
+Só 11% delas abriram qualquer página fora do blog, e apenas 6 chegaram ao
+diagnóstico. O blog traz gente e não entrega contato.
 
-## Temas sugeridos para os dias de pauta
+Por isso a regra deste bloco: **o artigo não é só conteúdo, é porta de entrada.**
+Todo artigo precisa sair com `/js/cta-blog.js` e com o contêiner de texto que
+esse script usa para inserir a chamada. Artigo sem isso é tráfego jogado fora.
 
-Nenhum destes existe no blog. Confira a lista de slugs antes de escrever.
+## Como usar esta pauta
 
-1. **Quanto custa uma cadeira parada: o custo da hora ociosa no salão**
-   slug sugerido: `custo-da-hora-ociosa-no-salao`
-   Aprofunda o tema de custo por agendamento pelo outro lado, o da capacidade
-   que o salão paga e não usa.
+- **Segunda, quarta e sexta:** pegue o próximo tema não publicado da lista
+  abaixo, na ordem.
+- **Terça, quinta, sábado e domingo:** tema livre, fora de avaliação. Isso
+  continua valendo e é proposital: o bloco de reputação não pode virar monotema
+  e competir com os próprios artigos na busca.
+- Nenhum tema da lista existe no blog. Confira o slug antes de escrever.
+- **Nunca repita a intenção de busca** de `mensagem-pedir-avaliacao-google-salao`.
+  Esse artigo é o que ranqueia. Os dez abaixo existem para cercá-lo, não para
+  disputar com ele. Todos devem **linkar para ele** no corpo do texto.
 
-2. **O que responder quando o cliente pergunta o preço no WhatsApp**
-   slug sugerido: `cliente-pergunta-preco-no-whatsapp-salao`
-   Aprofunda tempo de resposta saindo da velocidade e indo para o conteúdo da
-   resposta, que é onde o agendamento se ganha ou se perde.
+## Os 10 temas do bloco de reputação
 
-3. **Quantas mensagens o salão leva para fechar um agendamento**
-   slug sugerido: `quantas-mensagens-ate-o-agendamento-no-salao`
-   Transforma o atendimento no WhatsApp em indicador, que é o formato que este
-   público está abrindo.
+1. **Como responder uma avaliação negativa no salão sem piorar a situação**
+   slug: `responder-avaliacao-negativa-salao`
+   Busca: como responder avaliação negativa. Dor imediata, dono com a crítica
+   no ar agora. Entra o que não escrever, o tamanho certo da resposta e o fato
+   de que a resposta é lida por quem ainda não é cliente.
+
+2. **Avaliação falsa ou injusta: o que dá e o que não dá para remover no Google**
+   slug: `remover-avaliacao-falsa-google-salao`
+   Busca: como remover avaliação do google. Intenção urgente. Explicar o
+   processo real de denúncia, o prazo e o que fazer quando o Google não remove.
+
+3. **Quantas avaliações o salão precisa para aparecer no mapa**
+   slug: `quantas-avaliacoes-para-aparecer-no-google-salao`
+   Busca: quantas avaliações preciso ter. Liga avaliação a posição no mapa, que
+   é a ponte natural para o diagnóstico.
+
+4. **A hora certa de pedir avaliação dentro do atendimento**
+   slug: `quando-pedir-avaliacao-no-salao`
+   Busca: quando pedir avaliação ao cliente. Complementa o artigo campeão pelo
+   outro lado: ele dá a mensagem, este dá o momento. Não repetir os modelos.
+
+5. **Avaliação só com estrela, sem comentário: por que ela vale menos**
+   slug: `avaliacao-sem-comentario-salao`
+   Busca: avaliação sem comentário. Tema que quase ninguém cobre e que explica
+   por que uma base grande pode render pouco.
+
+6. **Como treinar a recepção para pedir avaliação sem constranger a cliente**
+   slug: `equipe-pedir-avaliacao-salao`
+   Busca: como pedir avaliação para o cliente. Ângulo de rotina e equipe, que é
+   onde o Método entra naturalmente.
+
+7. **O salão do lado tem nota melhor que a sua: o que isso muda de verdade**
+   slug: `concorrente-com-nota-melhor-salao`
+   Busca: concorrente com nota melhor no google. Comparação é o que mais move
+   dono de salão, e é o gancho mais direto para o diagnóstico.
+
+8. **As avaliações pararam de chegar: o que fazer quando o ritmo trava**
+   slug: `avaliacoes-pararam-de-chegar-salao`
+   Busca: não recebo mais avaliações. Trata o problema de ritmo, que é o que
+   aparece na maioria das auditorias de perfil que a agência faz.
+
+9. **QR code de avaliação do Google: como criar e onde colocar no salão**
+   slug: `qr-code-avaliacao-google-salao`
+   Busca: qr code avaliação google. Artigo de ferramenta, com passo a passo.
+   Alto volume de busca e fácil de ranquear.
+
+10. **Por que a avaliação de um Local Guide pesa mais que a das outras**
+    slug: `local-guide-avaliacao-google-salao`
+    Busca: local guide google avaliação. Explica por que duas avaliações não
+    valem a mesma coisa.
+
+## Depois do bloco
+
+Em 07/12 este arquivo volta a ser a leitura automática de 7 dias. Antes disso,
+medir: se em 15 dias o blog continuar com zero clique no WhatsApp, o problema
+não é volume de conteúdo e sim o que está sendo oferecido dentro do artigo.
