@@ -21,7 +21,7 @@
   var NUMERO = '5561995055390';
   var CONVERSAO = 'AW-18156422201/R5uZCI3vyqscELmI1NFD';
 
-  var corpo = document.querySelector('.article-body');
+  var corpo = document.querySelector('.article-body, .article-content');
   var ehArtigo = !!corpo;
   var path = window.location.pathname;
 
@@ -30,9 +30,10 @@
   var ASSUNTOS = [
     {
       teste: /avaliac|review/,
-      titulo: 'Quer essas mensagens prontas para o seu salão?',
-      texto: 'A BNC adapta os modelos ao seu salão e organiza a rotina de pedir avaliação no Google. Fale com a equipe pelo WhatsApp.',
-      botao: 'Quero as mensagens adaptadas',
+      destino: '/raio-x/',
+      titulo: 'Avaliação boa e mesmo assim pouca gente nova?',
+      texto: 'O Raio-X mede em que posição o Google mostra o seu salão em quatro buscas da sua região, compara a sua base de avaliações com a de quem está na frente e diz o que corrigir primeiro. R$ 147, pronto em até 48 horas.',
+      botao: 'Quero o Raio-X do meu salão',
       pedido: 'quero ajuda para adaptar as mensagens de avaliação ao meu salão'
     },
     {
@@ -44,9 +45,10 @@
     },
     {
       teste: /google-meu-negocio|perfil-empresa|google-maps|maps|seo|google/,
+      destino: '/raio-x/',
       titulo: 'Seu salão aparece no Google quando procuram por você?',
-      texto: 'A BNC analisa o Perfil da Empresa e as buscas da sua região e mostra o que está impedindo o salão de aparecer.',
-      botao: 'Quero uma análise do meu Google',
+      texto: 'O Raio-X responde isso com número: 81 pontos medidos no mapa em cada uma de quatro buscas, mais a auditoria dos 20 itens do seu perfil. R$ 147, pronto em até 48 horas.',
+      botao: 'Quero o Raio-X do meu salão',
       pedido: 'quero uma análise de como meu salão aparece no Google'
     },
     {
@@ -120,11 +122,17 @@
       '<p class="blog-cta-title">' + conteudo.titulo + '</p>' +
       '<p class="blog-cta-text">' + conteudo.texto + '</p>' +
       '<div class="blog-cta-actions">' +
-        '<a class="btn btn-primary blog-cta-wa" target="_blank" rel="noopener noreferrer" href="' +
-          linkWhatsApp(conteudo.pedido) + '">' + ICONE + '<span>' + conteudo.botao + '</span></a>' +
-        '<a class="blog-cta-link" href="/diagnostico/">Ou faça o diagnóstico gratuito</a>' +
+        (conteudo.destino
+          ? '<a class="btn btn-primary blog-cta-produto" href="' + conteudo.destino + '">' +
+              '<span>' + conteudo.botao + '</span></a>' +
+            '<a class="blog-cta-link blog-cta-wa" target="_blank" rel="noopener noreferrer" href="' +
+              linkWhatsApp(conteudo.pedido) + '">Ou fale com a BNC no WhatsApp</a>'
+          : '<a class="btn btn-primary blog-cta-wa" target="_blank" rel="noopener noreferrer" href="' +
+              linkWhatsApp(conteudo.pedido) + '">' + ICONE + '<span>' + conteudo.botao + '</span></a>' +
+            '<a class="blog-cta-link" href="/diagnostico/">Ou fale com a BNC</a>') +
       '</div>';
-    box.querySelector('.blog-cta-wa').addEventListener('click', registrarConversao);
+    var alvo = box.querySelector('.blog-cta-wa');
+    if (alvo) alvo.addEventListener('click', registrarConversao);
     return box;
   }
 
