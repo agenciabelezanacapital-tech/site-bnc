@@ -490,6 +490,7 @@
           leadId: 'raiox-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7),
           visitaId: typeof window.BNCRadar.visitaId === 'function' ? window.BNCRadar.visitaId() : '',
           origem: window.location.href,
+          tier: 'Raio-X pago',
           campos: {
             produto: 'raio-x',
             nome: limpo('rx-nome'),
@@ -497,6 +498,7 @@
             negocio: limpo('rx-salao'),
             cidade: limpo('rx-cidade'),
             instagram: limpo('rx-insta'),
+            interesse: limpo('rx-insta') ? 'Instagram: ' + limpo('rx-insta') : 'Raio-X pago, sem Instagram',
             valor: '147'
           }
         }, false);
