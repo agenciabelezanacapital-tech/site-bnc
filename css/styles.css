@@ -1694,3 +1694,35 @@ img, svg, video { max-width: 100%; }
 
 @media (min-width: 640px)  { .blog-index-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .blog-index-grid { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; } }
+
+
+/* ══════════════════════════════════════════════════════════════
+   AJUSTE DE TOPO NO CELULAR
+   O h1 do hero tem uma quebra de linha manual que, em tela
+   estreita, deixava uma linha solta com uma palavra so. Abaixo
+   de 700px a quebra some e o texto flui sozinho, em tres linhas
+   equilibradas. O selo do topo fica mais compacto e com o icone
+   alinhado a primeira linha. Nada aqui vale no desktop.
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .hero h1 br { display: none; }
+  .hero h1 {
+    font-size: clamp(1.5rem, 7vw, 1.9rem);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin-bottom: 1rem;
+  }
+  .hero-badge {
+    align-items: flex-start;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+  .hero-badge svg { flex: 0 0 auto; margin-top: 0.15rem; }
+  .hero p { margin-bottom: 1.5rem; }
+  .hero p.hero-support { margin-bottom: 1.5rem; }
+  .hero-cta { margin-bottom: 4.5rem; }
+  .wa-float { width: 52px; height: 52px; bottom: 1rem; right: 1rem; }
+}
