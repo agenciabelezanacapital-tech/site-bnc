@@ -1732,6 +1732,7 @@ img, svg, video { max-width: 100%; }
 .raiox-form-wrap[hidden] { display: none; }
 .raiox-form-wrap {
   margin-top: 1.25rem;
+  scroll-margin-top: 110px;
   padding: 1.5rem;
   border: 1px solid #333;
   border-radius: var(--radius);
