@@ -1746,7 +1746,7 @@ img, svg, video { max-width: 100%; }
 .raiox-form-action .diagnostico-note { margin-top: .7rem; }
 .raiox-form-ok[hidden] { display: none; }
 .raiox-form-ok h3 { margin-bottom: .5rem; }
-.raiox-form-ok a { color: var(--gold2); text-decoration: underline; text-underline-offset: 3px; }
+.raiox-form-ok a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; }
 .raiox-form-ok .diagnostico-note { max-width: none; text-align: left; }
 .raiox-form-ok p + p { margin-top: .6rem; }
 @media (min-width: 900px) {
