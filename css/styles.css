@@ -1726,3 +1726,29 @@ img, svg, video { max-width: 100%; }
   .hero-cta { margin-bottom: 4.5rem; }
   .wa-float { width: 52px; height: 52px; bottom: 1rem; right: 1rem; }
 }
+
+
+/* Raio-X: triagem antes do pagamento */
+.raiox-form-wrap[hidden] { display: none; }
+.raiox-form-wrap {
+  margin-top: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid #333;
+  border-radius: var(--radius);
+  background: #0f0f0f;
+}
+.raiox-form-wrap h3 { margin: .4rem 0 .5rem; font-size: clamp(1.15rem, 3vw, 1.45rem); }
+.raiox-form-intro { margin-bottom: 1.35rem; color: var(--text-muted); }
+.raiox-form .field input.is-invalid { border-color: #ff8b8b; }
+.raiox-form-action { margin-top: 1.25rem; }
+.raiox-form-action .btn { width: 100%; white-space: normal; }
+.raiox-form-action .diagnostico-note { margin-top: .7rem; }
+.raiox-form-ok[hidden] { display: none; }
+.raiox-form-ok h3 { margin-bottom: .5rem; }
+.raiox-form-ok p + p { margin-top: .6rem; }
+@media (min-width: 900px) {
+  .raiox-field-full { grid-column: 1 / -1; }
+  .raiox-form-action { display: flex; align-items: center; gap: 1rem; }
+  .raiox-form-action .btn { width: auto; white-space: nowrap; }
+  .raiox-form-action .diagnostico-note { margin-top: 0; }
+}

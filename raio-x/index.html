@@ -317,6 +317,47 @@
         <p class="diagnostico-note">Pronto em até 48 horas, no seu WhatsApp.</p>
       </div>
     </div>
+
+    <div class="raiox-form-wrap" id="raioxFormWrap" hidden>
+      <form id="raioxForm" class="raiox-form" novalidate>
+        <span class="consultoria-card-label">Antes do pagamento</span>
+        <h3>Para onde vai o seu Raio-X</h3>
+        <p class="raiox-form-intro">Cinco campos. A gente precisa deles para medir o seu salão no mapa certo e te entregar o relatório no WhatsApp.</p>
+        <div class="form-grid two-columns">
+          <div class="field">
+            <label for="rx-nome">Seu nome *</label>
+            <input id="rx-nome" name="nome" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="rx-whats">WhatsApp com DDD *</label>
+            <input id="rx-whats" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="Ex.: 61 99999-9999" required />
+          </div>
+          <div class="field">
+            <label for="rx-salao">Nome do salão *</label>
+            <input id="rx-salao" name="salao" autocomplete="organization" required />
+          </div>
+          <div class="field">
+            <label for="rx-cidade">Cidade e bairro *</label>
+            <input id="rx-cidade" name="cidade" placeholder="Ex.: Brasília, Asa Norte" required />
+          </div>
+          <div class="field raiox-field-full">
+            <label for="rx-insta">Instagram do salão</label>
+            <input id="rx-insta" name="instagram" placeholder="@seusalao" />
+            <small>Se o salão não tiver Instagram, pode deixar em branco.</small>
+          </div>
+        </div>
+        <p class="form-error" id="rx-erro" role="alert"></p>
+        <div class="raiox-form-action">
+          <button type="submit" class="btn btn-primary btn-lg" id="rxEnviar">Ir para o pagamento</button>
+          <p class="diagnostico-note">O pagamento abre em outra aba, no Mercado Pago.</p>
+        </div>
+      </form>
+      <div class="raiox-form-ok" id="raioxOk" hidden>
+        <h3>Dados recebidos</h3>
+        <p>O pagamento abriu em outra aba. Se não abriu, <a href="https://mpago.li/1hLH2uJ" target="_blank" rel="noopener noreferrer">toque aqui para abrir o Mercado Pago</a>.</p>
+        <p class="diagnostico-note">Assim que o pagamento cair, a gente te chama no WhatsApp para confirmar os detalhes antes de começar a medição.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -374,27 +415,109 @@
 <script src="/js/main.js?v=20260821" defer></script>
 <script>
 (function(){
-  // Cole aqui o link de pagamento (Mercado Pago, Nubank, Stripe, o que for).
-  // Enquanto estiver vazio, o botao cai no WhatsApp com a mensagem pronta,
-  // para a pagina ja funcionar antes do checkout estar ligado.
   var LINK_PAGAMENTO = 'https://mpago.li/1hLH2uJ';
-
   var WHATS = '5561995055390';
-  var MSG = 'Oi! Quero o Raio-X de presença digital do meu salão.';
+  var MSG = 'Oi! Quero o Raio-X de presen\u00e7a digital do meu sal\u00e3o.';
   var destino = LINK_PAGAMENTO || ('https://wa.me/' + WHATS + '?text=' + encodeURIComponent(MSG));
 
-  var b = document.getElementById('botaoPagar');
-  if (b) {
-    b.setAttribute('href', destino);
-    b.setAttribute('target','_blank');
-    b.setAttribute('rel','noopener noreferrer');
-    b.addEventListener('click', function(){
+  var botao = document.getElementById('botaoPagar');
+  var wrap  = document.getElementById('raioxFormWrap');
+  var form  = document.getElementById('raioxForm');
+  var erro  = document.getElementById('rx-erro');
+  var ok    = document.getElementById('raioxOk');
+  if (!botao || !wrap || !form) return;
+
+  var OBRIGATORIOS = ['rx-nome','rx-whats','rx-salao','rx-cidade'];
+
+  botao.setAttribute('href', '#raioxFormWrap');
+  botao.removeAttribute('target');
+  botao.removeAttribute('rel');
+  botao.setAttribute('aria-expanded', 'false');
+  botao.setAttribute('aria-controls', 'raioxFormWrap');
+
+  botao.addEventListener('click', function (e) {
+    e.preventDefault();
+    wrap.hidden = false;
+    botao.setAttribute('aria-expanded', 'true');
+    try { wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (err) { wrap.scrollIntoView(); }
+    var primeiro = document.getElementById('rx-nome');
+    if (primeiro) setTimeout(function(){ try { primeiro.focus({ preventScroll: true }); } catch (err) {} }, 400);
+    if (typeof gtag === 'function') gtag('event', 'raiox_form_aberto');
+  });
+
+  function limpo(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  OBRIGATORIOS.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', function () { el.classList.remove('is-invalid'); });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var faltando = null;
+    OBRIGATORIOS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (!el.value.trim()) {
+        el.classList.add('is-invalid');
+        if (!faltando) faltando = el;
+      } else {
+        el.classList.remove('is-invalid');
+      }
+    });
+    if (faltando) {
+      erro.textContent = 'Preenche os campos marcados para a gente conseguir te entregar o relat\u00f3rio.';
+      faltando.focus();
+      return;
+    }
+    var elTel = document.getElementById('rx-whats');
+    var tel = limpo('rx-whats').replace(/\D/g, '');
+    if (tel.length < 10) {
+      elTel.classList.add('is-invalid');
+      erro.textContent = 'Confere o WhatsApp: precisa do DDD e do n\u00famero completo.';
+      elTel.focus();
+      return;
+    }
+    erro.textContent = '';
+
+    try {
+      if (window.BNCRadar && typeof window.BNCRadar.enviar === 'function') {
+        window.BNCRadar.enviar({
+          type: 'lead',
+          leadId: 'raiox-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7),
+          visitaId: typeof window.BNCRadar.visitaId === 'function' ? window.BNCRadar.visitaId() : '',
+          origem: window.location.href,
+          campos: {
+            produto: 'raio-x',
+            nome: limpo('rx-nome'),
+            whatsapp: limpo('rx-whats'),
+            negocio: limpo('rx-salao'),
+            cidade: limpo('rx-cidade'),
+            instagram: limpo('rx-insta'),
+            valor: '147'
+          }
+        }, false);
+      }
+    } catch (err) {}
+
+    try {
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', { send_to: 'AW-18156422201' });
         gtag('event', 'raiox_checkout', { valor: 147, moeda: 'BRL' });
       }
-    });
-  }
+    } catch (err) {}
+
+    try { window.open(destino, '_blank', 'noopener'); } catch (err) { window.location.href = destino; }
+
+    form.hidden = true;
+    if (ok) {
+      ok.hidden = false;
+      try { ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (err) {}
+    }
+  });
 })();
 </script>
 
