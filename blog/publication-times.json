@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "lista-espera-salao-encaixes": {
+      "published_at": "2026-11-10T11:45:32Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5rbL9Kxk1nNWvinjjd5aG6oNq9os",
+      "commit": "d6a6042d81881aa06c0e6294e6127593e2026b75"
+    },
     "responder-avaliacao-negativa-salao": {
       "published_at": "2026-11-09T16:39:15Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/EF9AvwG2VYYA8YUdHieoq5PnR9m2",
