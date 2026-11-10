@@ -52,7 +52,7 @@
       pedido: 'quero uma análise de como meu salão aparece no Google'
     },
     {
-      teste: /whatsapp|follow-up|resposta|recepc|atendimento|agendamento|atrasad|no-show|falta/,
+      teste: /whatsapp|follow-up|resposta|recepc|atendimento|agendamento|atrasad|no-show|falta|lista-espera|encaixe/,
       titulo: 'O WhatsApp do salão está perdendo cliente?',
       texto: 'A BNC organiza resposta, follow-up e confirmação para que o contato vire agendamento. Converse com a equipe.',
       botao: 'Quero organizar meu atendimento',
