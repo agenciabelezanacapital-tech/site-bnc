@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "passagem-turno-recepcao-salao": {
+      "published_at": "2026-11-12T11:31:33Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/EyMEozK66mxjmYjqqPvzXqeerKw4",
+      "commit": "4a990541f12adb1c6a72f1f395d87fa8a48f96f6"
+    },
     "remover-avaliacao-falsa-google-salao": {
       "published_at": "2026-11-11T11:16:51Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/4ayB2hGZe1AJPHBoGHBvjm3fLBdm",
