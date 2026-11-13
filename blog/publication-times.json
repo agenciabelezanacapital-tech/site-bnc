@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "quantas-avaliacoes-para-aparecer-no-google-salao": {
+      "published_at": "2026-11-13T11:26:39Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/Ab2DhubVFR8apb4L2zcykAoxh2P9",
+      "commit": "783437726e1b4ff620ad419a6c5a987b07963043"
+    },
     "passagem-turno-recepcao-salao": {
       "published_at": "2026-11-12T11:31:33Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/EyMEozK66mxjmYjqqPvzXqeerKw4",
