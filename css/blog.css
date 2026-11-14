@@ -910,7 +910,7 @@ body:has(.article-layout > :only-child) .article-hero h1 {
   .blog-simple-nav > a:not(.btn) { font-size: 0.875rem; }
   .blog-simple-nav .btn { display: none; }
   .blog-hero { min-height: auto; padding-top: calc(var(--header-h) + 3rem); }
-  .blog-hero-visual { min-height: 310px; }
+  .blog-hero-visual { min-height: 460px; }
   .blog-meta span + span::before { margin-right: 0.55rem; }
   .blog-featured-media { min-height: 250px; }
   .blog-main, .blog-pillars, .blog-cta { padding-top: 4rem; padding-bottom: 4rem; }
