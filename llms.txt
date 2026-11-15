@@ -206,3 +206,5 @@ O Blog BNC reúne conteúdo educativo sobre captação, conversão e gestão par
 - [Quantas avaliações o salão precisa para aparecer no mapa?](https://www.belezanacapital.com.br/blog/quantas-avaliacoes-para-aparecer-no-google-salao/): Existe um número mínimo de avaliações para aparecer no Google Maps? Entenda os limites dessa comparação e como acompanhar a presença local do salão.
 
 - [Duração dos serviços no salão: como definir o tempo de agendamento](https://www.belezanacapital.com.br/blog/duracao-servicos-agendamento-salao/): Aprenda a medir a duração dos serviços, separar etapas e revisar os blocos da agenda com exemplos práticos, sem reduzir o tempo técnico do atendimento.
+
+- [Briefing de anúncios para salão: o que enviar ao designer ou editor](https://www.belezanacapital.com.br/blog/briefing-anuncios-salao/): Monte um briefing de anúncios para salão com objetivo, serviço, materiais, mensagem e critérios de aprovação. Veja um modelo para orientar a criação.
