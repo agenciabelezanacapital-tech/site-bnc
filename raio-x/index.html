@@ -43,11 +43,12 @@
     .raiox-aba{flex:1;font:inherit;font-size:.85rem;font-weight:600;padding:.65rem .9rem;border-radius:30px;border:1px solid rgba(255,255,255,.14);background:transparent;color:inherit;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
     .raiox-aba[aria-selected="true"]{background:#C9A96E;border-color:#C9A96E;color:#0D0D0D}
     .raiox-mapa{position:relative;height:380px;overflow:hidden;background:#1b1d20 var(--mapa,none) center/cover no-repeat}
-    .raiox-mapa::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 35%,rgba(13,13,13,.55) 100%)}
+    .raiox-mapa iframe{position:absolute;left:0;top:-70px;width:100%;height:calc(100% + 70px);border:0;pointer-events:none;filter:invert(.92) hue-rotate(180deg) saturate(.55) brightness(.9) contrast(.95)}
+    .raiox-mapa::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(13,13,13,.05) 30%,rgba(13,13,13,.5) 100%)}
+    .raiox-grade{z-index:2}
     .raiox-grade{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;grid-template-columns:repeat(9,1fr);gap:5px;width:min(92%,340px)}
     .raiox-grade span{aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.45);border:2px solid rgba(255,255,255,.85);transition:background .35s}
     .raiox-grade .p1{background:#1e8e3e}.raiox-grade .p2{background:#7cb342}.raiox-grade .p3{background:#e0a83d}.raiox-grade .p4{background:#e07b2d}.raiox-grade .p5{background:#d0402e}
-    .raiox-legenda{position:absolute;right:.6rem;bottom:.35rem;font-size:.62rem;opacity:.6}
     .raiox-ranks .raiox-rank.voce.no-meio{margin-top:0;padding-top:.42rem;border-top:none}
     .raiox-simulacao{display:none;margin-top:.9rem;font-size:.78rem;color:#E0A83D}
     .raiox-amostra[data-estado="depois"] .raiox-simulacao{display:block}
@@ -251,8 +252,8 @@
         </div>
         <div class="raiox-amostra-corpo">
           <div class="raiox-mapa" role="img" aria-label="Grade de 81 pontos sobre o mapa de Brasília mostrando a posição de um salão no Google">
+            <iframe src="https://maps.google.com/maps?q=-15.8125,-47.9005&amp;z=15&amp;output=embed" title="Mapa de Brasília, Asa Sul" loading="lazy" tabindex="-1" aria-hidden="true" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <div class="raiox-grade" aria-hidden="true"></div>
-            <span class="raiox-legenda">Mapa: &copy; OpenStreetMap, &copy; CARTO</span>
           </div>
           <div class="raiox-rank-side">
             <h4>Top 5 da busca</h4>
