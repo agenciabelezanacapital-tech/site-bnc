@@ -48,7 +48,7 @@
     .raiox-grade span{aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.45);border:2px solid rgba(255,255,255,.85);transition:background .35s}
     .raiox-grade .p1{background:#1e8e3e}.raiox-grade .p2{background:#7cb342}.raiox-grade .p3{background:#e0a83d}.raiox-grade .p4{background:#e07b2d}.raiox-grade .p5{background:#d0402e}
     .raiox-legenda{position:absolute;right:.6rem;bottom:.35rem;font-size:.62rem;opacity:.6}
-    .raiox-ranks .raiox-rank.voce:first-child{margin-top:0;padding-top:.42rem;border-top:none}
+    .raiox-ranks .raiox-rank.voce.no-meio{margin-top:0;padding-top:.42rem;border-top:none}
     .raiox-simulacao{display:none;margin-top:.9rem;font-size:.78rem;color:#E0A83D}
     .raiox-amostra[data-estado="depois"] .raiox-simulacao{display:block}
     .raiox-rank-side{padding:1.35rem 1.5rem;border-left:1px solid rgba(255,255,255,.08)}
@@ -439,10 +439,10 @@
       rank:[['1','Salão da esquina','37%'],['2','Studio da avenida','29,6%'],['3','Beauty do shopping','19,8%'],['4','Espaço do bairro vizinho','17,3%'],['5','Cabeleireiro da quadra','8,6%']],
       voce:['31','O seu salão','1,2%'],
       nota:'Aparecer não é o mesmo que ser visto. Dá para estar presente em metade dos pontos e mesmo assim ficar fora das primeiras opções que a cliente vê sem rolar a tela.'},
-    depois:{grade:[14,11,9,7,6,7,8,10,13, 10,7,5,4,3,4,5,7,9, 8,5,3,2,2,2,3,4,7, 7,4,2,1,1,1,2,3,6, 6,3,2,1,1,1,2,3,5, 7,4,2,1,1,1,2,3,6, 8,5,3,2,2,2,3,5,8, 11,7,5,4,3,4,5,7,12, 17,13,9,7,6,7,9,14,X],
-      rank:[['1','O seu salão','31,4%'],['2','Salão da esquina','26,2%'],['3','Studio da avenida','18,9%'],['4','Beauty do shopping','12,7%'],['5','Espaço do bairro vizinho','6,1%']],
+    depois:{grade:[14,11,9,7,6,7,8,10,13, 10,7,5,4,3,4,5,7,9, 8,5,3,2,2,2,3,4,7, 7,4,2,2,1,2,2,3,6, 6,3,2,1,1,2,2,3,5, 7,4,3,2,2,2,3,4,6, 8,5,3,2,2,2,3,5,8, 11,7,5,4,3,4,5,7,12, 17,13,9,7,6,7,9,14,X],
+      rank:[['1','Salão da esquina','30,2%'],['2','O seu salão','27,4%'],['3','Studio da avenida','18,9%'],['4','Beauty do shopping','12,7%'],['5','Espaço do bairro vizinho','6,1%']],
       voce:null,
-      nota:'Com o perfil corrigido, o salão passa a aparecer entre as primeiras opções na maior parte do bairro, e não só na própria quadra.'}
+      nota:'Com o perfil corrigido, o salão passa a aparecer entre as primeiras opções na maior parte do bairro, disputando o topo com quem já liderava.'}
   };
   var grade=box.querySelector('.raiox-grade'), ranks=box.querySelector('.raiox-ranks'), nota=box.querySelector('.raiox-nota-texto');
   function cls(v){return v<=3?'p1':v<=6?'p2':v<=10?'p3':v<=19?'p4':'p5';}
@@ -450,7 +450,7 @@
   function mostra(e){
     var d=dados[e]; box.setAttribute('data-estado',e);
     grade.innerHTML=d.grade.map(function(v){return '<span class="'+cls(v)+'">'+(v===X?'20+':v)+'</span>';}).join('');
-    ranks.innerHTML=d.rank.map(function(r){return linha(r,r[1]==='O seu salão');}).join('')+(d.voce?linha(d.voce,true):'');
+    ranks.innerHTML=d.rank.map(function(r){return linha(r,r[1]==='O seu salão').replace(' voce"',' voce no-meio"');}).join('')+(d.voce?linha(d.voce,true):'');
     nota.textContent=d.nota;
     box.querySelectorAll('.raiox-aba').forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-estado')===e?'true':'false');});
   }
