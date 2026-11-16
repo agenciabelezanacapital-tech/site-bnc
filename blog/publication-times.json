@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "quando-pedir-avaliacao-no-salao": {
+      "published_at": "2026-11-16T12:03:33Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/87jDNVpQZTHhavNwV53FMZCnoRE3",
+      "commit": "5a3c3922deff379d8805ed763685761355415cbe"
+    },
     "briefing-anuncios-salao": {
       "published_at": "2026-11-15T11:24:23Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/BtdQCv4MDY7hH3yMn99BFJrusQF8",
