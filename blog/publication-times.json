@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "avaliacao-sem-comentario-salao": {
+      "published_at": "2026-11-18T11:07:20Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/JCqB6pek1De2oixcxSTuZZsaaXDi",
+      "commit": "c752047dc1f339e6f589bb5024379b7ce8043c0a"
+    },
     "horario-feriado-google-salao": {
       "published_at": "2026-11-17T11:16:46Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/FeRcX7RfY1X8ZgXfQwsEGmfT9B7j",
