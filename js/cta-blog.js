@@ -34,6 +34,7 @@
       titulo: 'Avaliação boa e mesmo assim pouca gente nova?',
       texto: 'O Raio-X mede em que posição o Google mostra o seu salão em quatro buscas da sua região, compara a sua base de avaliações com a de quem está na frente e diz o que corrigir primeiro. R$ 147, pronto em até 48 horas.',
       botao: 'Quero o Raio-X do meu salão',
+      curto: 'Quer saber em que posição o Google mostra o seu salão e quem está na sua frente? O Raio-X mede isso em 48 horas, por R$ 147.',
       pedido: 'quero ajuda para adaptar as mensagens de avaliação ao meu salão'
     },
     {
@@ -49,6 +50,7 @@
       titulo: 'Seu salão aparece no Google quando procuram por você?',
       texto: 'O Raio-X responde isso com número: 81 pontos medidos no mapa em cada uma de quatro buscas, mais a auditoria dos 20 itens do seu perfil. R$ 147, pronto em até 48 horas.',
       botao: 'Quero o Raio-X do meu salão',
+      curto: 'Quer saber se o seu salão aparece quando procuram por você no Google? O Raio-X mede isso em 48 horas, por R$ 147.',
       pedido: 'quero uma análise de como meu salão aparece no Google'
     },
     {
@@ -136,10 +138,28 @@
     return box;
   }
 
+  // Faixa curta no topo, so para artigos que levam a um produto (Raio-X).
+  // O radar mostrou que 3 em cada 4 leitores dos artigos de reputacao saem
+  // antes de 25% da pagina, entao a chamada do meio quase nunca e vista.
+  function faixaTopo(conteudo) {
+    var box = document.createElement('aside');
+    box.className = 'blog-cta blog-cta-topo';
+    box.setAttribute('data-secao', 'blog-cta-topo');
+    box.setAttribute('aria-label', 'Raio-X de Presença Digital');
+    box.innerHTML =
+      '<p class="blog-cta-text">' + conteudo.curto + '</p>' +
+      '<a class="btn btn-primary blog-cta-produto" href="' + conteudo.destino + '"><span>Ver o Raio-X</span></a>';
+    return box;
+  }
+
   function inserirChamadas() {
     if (!ehArtigo || corpo.querySelector('.blog-cta')) return;
     var conteudo = assunto();
     var titulos = corpo.querySelectorAll('h2');
+    // topo: antes do primeiro subtitulo, depois da introducao do artigo
+    if (conteudo.destino && conteudo.curto && titulos.length >= 2) {
+      titulos[0].parentNode.insertBefore(faixaTopo(conteudo), titulos[0]);
+    }
     // meio do texto: antes do subtitulo central, assim a pessoa ja leu o
     // suficiente para confiar e ainda nao foi embora
     if (titulos.length >= 3) {
