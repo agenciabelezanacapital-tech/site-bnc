@@ -29,6 +29,13 @@
   // do artigo vale; o resto cai na chamada geral.
   var ASSUNTOS = [
     {
+      teste: /divergencia-estoque-salao/,
+      titulo: 'Quer organizar os processos do seu salão?',
+      texto: 'A BNC ajuda a revisar a rotina de gestão e definir prioridades para a operação. Converse com a equipe.',
+      botao: 'Quero organizar minha gestão',
+      pedido: 'quero ajuda para organizar os processos de gestão do meu salão'
+    },
+    {
       teste: /avaliac|review/,
       destino: '/raio-x/',
       titulo: 'Avaliação boa e mesmo assim pouca gente nova?',
