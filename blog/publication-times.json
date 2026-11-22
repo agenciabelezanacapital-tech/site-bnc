@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "etiquetas-whatsapp-salao": {
+      "published_at": "2026-11-22T11:07:39Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5EN2oax3AfS9n4dLLRaQueqHhgEm",
+      "commit": "f26fa7bddf4bc7cfad70eb1bf64de1ad2930b7ea"
+    },
     "divergencia-estoque-salao": {
       "published_at": "2026-11-21T11:41:44Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/8aGBY6c1ThyhfCXvPsVsuWdDkZ8Z",
