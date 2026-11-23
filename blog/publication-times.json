@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "concorrente-com-nota-melhor-salao": {
+      "published_at": "2026-11-23T11:22:07Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/3W4sx8riB5CCWML4bkcUDQ6njhdZ",
+      "commit": "0dead7277bfff578981680529c089a27f89387fd"
+    },
     "etiquetas-whatsapp-salao": {
       "published_at": "2026-11-22T11:07:39Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5EN2oax3AfS9n4dLLRaQueqHhgEm",
