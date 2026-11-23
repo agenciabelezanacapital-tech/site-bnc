@@ -36,7 +36,7 @@
       pedido: 'quero ajuda para organizar os processos de gestão do meu salão'
     },
     {
-      teste: /avaliac|review/,
+      teste: /avaliac|review|concorrente-com-nota-melhor-salao/,
       destino: '/raio-x/',
       titulo: 'Avaliação boa e mesmo assim pouca gente nova?',
       texto: 'O Raio-X mede em que posição o Google mostra o seu salão em quatro buscas da sua região, compara a sua base de avaliações com a de quem está na frente e diz o que corrigir primeiro. R$ 147, pronto em até 48 horas.',
