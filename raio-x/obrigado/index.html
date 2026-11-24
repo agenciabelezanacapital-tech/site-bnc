@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagamento do Raio-X | Beleza na Capital</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPS6QQ2Z0C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EPS6QQ2Z0C');
+    gtag('config', 'AW-18156422201');
+  </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yr5906jrg2");
+  </script>
+  <script src="/js/radar.js" defer></script>
+  <style>
+    .obg{min-height:100vh;display:flex;align-items:center;padding:4rem 0}
+    .obg-card{max-width:620px;margin:0 auto;background:rgba(26,26,26,.92);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:2.25rem 1.75rem;text-align:center}
+    .obg-card h1{font-size:clamp(1.5rem,4vw,2.1rem);margin:.6rem 0 .9rem}
+    .obg-card p{color:var(--text-muted,#9A9A9A);margin-bottom:1rem}
+    .obg-card .btn{margin-top:.6rem;white-space:normal}
+    .obg-id{font-size:.8rem;opacity:.6;margin-top:1.2rem}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+<main class="obg">
+  <div class="container">
+    <div class="obg-card">
+      <div id="estadoLendo">
+        <span class="section-label">Raio-X de Presença Digital</span>
+        <h1>Conferindo o seu pagamento</h1>
+        <p>Só um instante.</p>
+      </div>
+
+      <div id="estadoAprovado" hidden>
+        <span class="section-label">Pagamento confirmado</span>
+        <h1>Seu Raio-X está garantido</h1>
+        <p>Falta um passo: mande no WhatsApp o nome e o endereço do salão. A medição começa assim que a gente receber, e o relatório chega em até 48 horas.</p>
+        <a class="btn btn-primary btn-lg" id="botaoWhats" href="https://wa.me/5561995055390" target="_blank" rel="noopener noreferrer">Mandar meus dados no WhatsApp</a>
+      </div>
+
+      <div id="estadoPendente" hidden>
+        <span class="section-label">Pagamento em análise</span>
+        <h1>Recebemos o seu pedido</h1>
+        <p>Se você pagou com Pix ou boleto, a confirmação pode levar alguns minutos. Já pode mandar o nome e o endereço do salão no WhatsApp para adiantar.</p>
+        <a class="btn btn-primary btn-lg" id="botaoWhatsPend" href="https://wa.me/5561995055390" target="_blank" rel="noopener noreferrer">Mandar meus dados no WhatsApp</a>
+      </div>
+
+      <div id="estadoOutro" hidden>
+        <span class="section-label">Raio-X de Presença Digital</span>
+        <h1>Não encontramos o pagamento</h1>
+        <p>Se você já pagou, fala com a gente no WhatsApp que a gente confere na hora.</p>
+        <a class="btn btn-primary btn-lg" href="https://wa.me/5561995055390?text=Oi!%20Paguei%20o%20Raio-X%20e%20quero%20conferir%20o%20pagamento." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+        <p style="margin-top:1rem"><a class="gold" href="/raio-x/">Voltar para o Raio-X</a></p>
+      </div>
+
+      <p class="obg-id" id="pagId" hidden></p>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  // Rotulo da conversao "Compra Raio-X" no Google Ads (Metas > Conversoes > Compra Raio-X >
+  // Configuracao da tag, parte depois da barra em send_to). Vazio = so o GA4 registra.
+  var ROTULO_COMPRA = '';
+  var CONTA_ADS = 'AW-18156422201';
+  var PRECO = 147;
+  var WHATS = '5561995055390';
+
+  var q = new URLSearchParams(location.search);
+  var id = (q.get('payment_id') || q.get('collection_id') || '').replace(/\D/g, '');
+  var statusUrl = q.get('status') || q.get('collection_status') || '';
+
+  function mostra(nome){
+    ['estadoLendo','estadoAprovado','estadoPendente','estadoOutro'].forEach(function(k){
+      document.getElementById(k).hidden = (k !== nome);
+    });
+  }
+
+  function linkWhats(){
+    var msg = 'Oi! Acabei de pagar o Raio-X' + (id ? ' (pagamento ' + id + ')' : '') +
+      '.\nNome do salão: \nEndereço: \nInstagram: ';
+    return 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(msg);
+  }
+
+  function jaContou(){
+    try { return localStorage.getItem('raiox-conv-' + id) === '1'; } catch (e) { return false; }
+  }
+  function marcaContou(){
+    try { localStorage.setItem('raiox-conv-' + id, '1'); } catch (e) {}
+  }
+
+  function registraCompra(valor){
+    if (!id || jaContou()) return;
+    marcaContou();
+    if (typeof gtag === 'function') {
+      gtag('event', 'purchase', {
+        transaction_id: id, value: valor, currency: 'BRL',
+        items: [{ item_id: 'raio-x', item_name: 'Raio-X de Presença Digital', price: valor, quantity: 1 }]
+      });
+      if (ROTULO_COMPRA) {
+        gtag('event', 'conversion', { send_to: CONTA_ADS + '/' + ROTULO_COMPRA, value: valor, currency: 'BRL', transaction_id: id });
+      }
+    }
+  }
+
+  function aplica(estado, valor){
+    if (id) { var el = document.getElementById('pagId'); el.textContent = 'Pagamento ' + id; el.hidden = false; }
+    document.getElementById('botaoWhats').href = linkWhats();
+    document.getElementById('botaoWhatsPend').href = linkWhats();
+    if (estado === 'approved') { mostra('estadoAprovado'); registraCompra(valor || PRECO); }
+    else if (estado === 'pending' || estado === 'in_process') { mostra('estadoPendente'); }
+    else { mostra('estadoOutro'); }
+  }
+
+  if (!id) { aplica(statusUrl); return; }
+  fetch('/api/raiox-pagamento?id=' + encodeURIComponent(id))
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .catch(function(){ return null; })
+    .then(function(d){
+      if (d && d.status) { aplica(d.raiox ? d.status : 'outro', Number(d.valor) || PRECO); }
+      else { aplica(statusUrl, PRECO); }
+    });
+})();
+</script>
+</body>
+</html>

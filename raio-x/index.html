@@ -285,7 +285,7 @@
     <div class="estrutura-grid stagger fade-in-up">
       <div class="estrutura-card"><div class="estrutura-num" aria-hidden="true">1</div><div class="estrutura-content">
         <h3>Você faz o pagamento</h3>
-        <p>Pagamento único, pelo site. Na mesma hora você recebe uma mensagem no WhatsApp confirmando e perguntando o nome e o endereço do salão.</p>
+        <p>Pagamento único pelo Mercado Pago. Assim que ele confirma, você volta para o site com um botão para mandar o nome e o endereço do salão no WhatsApp.</p>
       </div></div>
       <div class="estrutura-card"><div class="estrutura-num" aria-hidden="true">2</div><div class="estrutura-content">
         <h3>Você manda o endereço</h3>
@@ -332,49 +332,15 @@
       </div>
       <div class="consultoria-cta-action">
         <a href="#" id="botaoPagar" class="btn btn-primary btn-lg" data-secao="investimento">Quero o Raio-X do meu salão</a>
-        <p class="diagnostico-note">Pronto em até 48 horas, no seu WhatsApp.</p>
+        <p class="diagnostico-note">Pagamento seguro pelo Mercado Pago. Pronto em até 48 horas, no seu WhatsApp.</p>
       </div>
     </div>
 
-    <div class="raiox-form-wrap" id="raioxFormWrap" hidden>
-      <form id="raioxForm" class="raiox-form" novalidate>
-        <span class="consultoria-card-label">Antes do pagamento</span>
-        <h3>Para onde vai o seu Raio-X</h3>
-        <p class="raiox-form-intro">Cinco campos. A gente precisa deles para medir o seu salão no mapa certo e te entregar o relatório no WhatsApp.</p>
-        <div class="form-grid two-columns">
-          <div class="field">
-            <label for="rx-nome">Seu nome *</label>
-            <input id="rx-nome" name="nome" autocomplete="name" required />
-          </div>
-          <div class="field">
-            <label for="rx-whats">WhatsApp com DDD *</label>
-            <input id="rx-whats" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="Ex.: 61 99999-9999" required />
-          </div>
-          <div class="field">
-            <label for="rx-salao">Nome do salão *</label>
-            <input id="rx-salao" name="salao" autocomplete="organization" required />
-          </div>
-          <div class="field">
-            <label for="rx-cidade">Cidade e bairro *</label>
-            <input id="rx-cidade" name="cidade" placeholder="Ex.: Brasília, Asa Norte" required />
-          </div>
-          <div class="field raiox-field-full">
-            <label for="rx-insta">Instagram do salão</label>
-            <input id="rx-insta" name="instagram" placeholder="@seusalao" />
-            <small>Se o salão não tiver Instagram, pode deixar em branco.</small>
-          </div>
-        </div>
-        <p class="form-error" id="rx-erro" role="alert"></p>
-        <div class="raiox-form-action">
-          <button type="submit" class="btn btn-primary btn-lg" id="rxEnviar">Ir para o pagamento</button>
-          <p class="diagnostico-note">O pagamento abre em outra aba, no Mercado Pago.</p>
-        </div>
-      </form>
-      <div class="raiox-form-ok" id="raioxOk" hidden>
-        <h3>Dados recebidos</h3>
-        <p>O pagamento abriu em outra aba. Se não abriu, <a href="https://mpago.li/1hLH2uJ" target="_blank" rel="noopener noreferrer">toque aqui para abrir o Mercado Pago</a>.</p>
-        <p class="diagnostico-note">Assim que o pagamento cair, a gente te chama no WhatsApp para confirmar os detalhes antes de começar a medição.</p>
-      </div>
+    <div class="raiox-form-wrap" id="raioxOk" hidden>
+      <span class="consultoria-card-label">Pagamento aberto</span>
+      <h3>Termine o pagamento no Mercado Pago</h3>
+      <p class="raiox-form-intro">Se a aba não abriu, <a class="gold" href="https://mpago.li/1hLH2uJ" target="_blank" rel="noopener noreferrer">toque aqui para abrir o Mercado Pago</a>. Depois de pagar, mande o comprovante, o nome e o endereço do salão no WhatsApp.</p>
+      <a class="btn btn-primary btn-lg" href="https://wa.me/5561995055390?text=Oi!%20Paguei%20o%20Raio-X.%20Segue%20o%20comprovante.%0ANome%20do%20sal%C3%A3o%3A%20%0AEndere%C3%A7o%3A%20" target="_blank" rel="noopener noreferrer">Mandar comprovante no WhatsApp</a>
     </div>
   </div>
 </section>
@@ -461,111 +427,67 @@
 </script>
 <script>
 (function(){
-  var LINK_PAGAMENTO = 'https://mpago.li/1hLH2uJ';
-  var WHATS = '5561995055390';
-  var MSG = 'Oi! Quero o Raio-X de presen\u00e7a digital do meu sal\u00e3o.';
-  var destino = LINK_PAGAMENTO || ('https://wa.me/' + WHATS + '?text=' + encodeURIComponent(MSG));
+  // Fluxo de compra: o botao cria o checkout do Mercado Pago pela /api/raiox-checkout,
+  // que volta para /raio-x/obrigado/ quando o pagamento e aprovado. La a compra vira
+  // conversao. Se a API nao responder, cai no link de pagamento fixo.
+  var LINK_RESERVA = 'https://mpago.li/1hLH2uJ';
+  var botoes = document.querySelectorAll('#botaoPagar, [data-raiox-comprar]');
+  var aviso = document.getElementById('raioxOk');
+  var ocupado = false;
 
-  var botao = document.getElementById('botaoPagar');
-  var wrap  = document.getElementById('raioxFormWrap');
-  var form  = document.getElementById('raioxForm');
-  var erro  = document.getElementById('rx-erro');
-  var ok    = document.getElementById('raioxOk');
-  if (!botao || !wrap || !form) return;
+  function gclid(){
+    try {
+      var q = new URLSearchParams(location.search);
+      var g = q.get('gclid');
+      if (g) { localStorage.setItem('bnc-gclid', g); return g; }
+      return localStorage.getItem('bnc-gclid') || '';
+    } catch (e) { return ''; }
+  }
+  gclid();
 
-  var OBRIGATORIOS = ['rx-nome','rx-whats','rx-salao','rx-cidade'];
-
-  botao.setAttribute('href', '#raioxFormWrap');
-  botao.removeAttribute('target');
-  botao.removeAttribute('rel');
-  botao.setAttribute('aria-expanded', 'false');
-  botao.setAttribute('aria-controls', 'raioxFormWrap');
-
-  botao.addEventListener('click', function (e) {
-    e.preventDefault();
-    wrap.hidden = false;
-    botao.setAttribute('aria-expanded', 'true');
-    try { wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (err) { wrap.scrollIntoView(); }
-    var primeiro = document.getElementById('rx-nome');
-    if (primeiro) setTimeout(function(){ try { primeiro.focus({ preventScroll: true }); } catch (err) {} }, 400);
-    if (typeof gtag === 'function') gtag('event', 'raiox_form_aberto');
-  });
-
-  function limpo(id) {
-    var el = document.getElementById(id);
-    return el ? el.value.trim() : '';
+  function reserva(){
+    try { window.open(LINK_RESERVA, '_blank', 'noopener'); } catch (e) {}
+    if (aviso) {
+      aviso.hidden = false;
+      try { aviso.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    }
   }
 
-  OBRIGATORIOS.forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) el.addEventListener('input', function () { el.classList.remove('is-invalid'); });
-  });
-
-  form.addEventListener('submit', function (e) {
+  function comprar(e){
     e.preventDefault();
-    var faltando = null;
-    OBRIGATORIOS.forEach(function (id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      if (!el.value.trim()) {
-        el.classList.add('is-invalid');
-        if (!faltando) faltando = el;
-      } else {
-        el.classList.remove('is-invalid');
-      }
-    });
-    if (faltando) {
-      erro.textContent = 'Preenche os campos marcados para a gente conseguir te entregar o relat\u00f3rio.';
-      faltando.focus();
-      return;
+    if (ocupado) return;
+    ocupado = true;
+    var botao = e.currentTarget;
+    var textoOriginal = botao.textContent;
+    botao.textContent = 'Abrindo o pagamento...';
+    if (typeof gtag === 'function') {
+      gtag('event', 'begin_checkout', { value: 147, currency: 'BRL', items: [{ item_id: 'raio-x', item_name: 'Raio-X de Presen\u00e7a Digital', price: 147, quantity: 1 }] });
     }
-    var elTel = document.getElementById('rx-whats');
-    var tel = limpo('rx-whats').replace(/\D/g, '');
-    if (tel.length < 10) {
-      elTel.classList.add('is-invalid');
-      erro.textContent = 'Confere o WhatsApp: precisa do DDD e do n\u00famero completo.';
-      elTel.focus();
-      return;
-    }
-    erro.textContent = '';
+    var visita = '';
+    try { visita = window.BNCRadar && window.BNCRadar.visitaId ? window.BNCRadar.visitaId() : ''; } catch (err) {}
+    fetch('/api/raiox-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ visitaId: visita, gclid: gclid() })
+    })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .catch(function(){ return null; })
+      .then(function(d){
+        if (d && d.url) { window.location.href = d.url; return; }
+        botao.textContent = textoOriginal;
+        ocupado = false;
+        reserva();
+      });
+  }
 
-    try {
-      if (window.BNCRadar && typeof window.BNCRadar.enviar === 'function') {
-        window.BNCRadar.enviar({
-          type: 'lead',
-          leadId: 'raiox-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7),
-          visitaId: typeof window.BNCRadar.visitaId === 'function' ? window.BNCRadar.visitaId() : '',
-          origem: window.location.href,
-          tier: 'Raio-X pago',
-          campos: {
-            produto: 'raio-x',
-            nome: limpo('rx-nome'),
-            whatsapp: limpo('rx-whats'),
-            negocio: limpo('rx-salao'),
-            cidade: limpo('rx-cidade'),
-            instagram: limpo('rx-insta'),
-            interesse: limpo('rx-insta') ? 'Instagram: ' + limpo('rx-insta') : 'Raio-X pago, sem Instagram',
-            valor: '147'
-          }
-        }, false);
-      }
-    } catch (err) {}
-
-    try {
-      if (typeof gtag === 'function') {
-        gtag('event', 'conversion', { send_to: 'AW-18156422201' });
-        gtag('event', 'raiox_checkout', { valor: 147, moeda: 'BRL' });
-      }
-    } catch (err) {}
-
-    try { window.open(destino, '_blank', 'noopener'); } catch (err) { window.location.href = destino; }
-
-    form.hidden = true;
-    if (ok) {
-      ok.hidden = false;
-      try { ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (err) {}
-    }
+  Array.prototype.forEach.call(botoes, function(b){
+    b.setAttribute('href', '#investimento');
+    b.addEventListener('click', comprar);
   });
+
+  if (/pagamento=nao-concluido/.test(location.search) && aviso) {
+    aviso.querySelector('h3').textContent = 'O pagamento n\u00e3o foi conclu\u00eddo';
+  }
 })();
 </script>
 
