@@ -33,6 +33,9 @@
   <script src="/js/radar.js" defer></script>
   <style>
     /* ajustes locais, so para os blocos que nao existem no site */
+    .raiox-garantias{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.55rem;text-align:left;font-size:.88rem;opacity:.9}
+    .raiox-garantias li{padding-left:1.1rem;position:relative}
+    .raiox-garantias li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:#C9A96E}
     .raiox-amostra{margin-top:2.5rem;border:1px solid var(--line,rgba(255,255,255,.08));border-radius:var(--radius,14px);overflow:hidden;background:rgba(26,26,26,.92)}
     .raiox-amostra-top{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;padding:1rem 1.35rem;border-bottom:1px solid rgba(255,255,255,.08)}
     .raiox-amostra-top strong{font-weight:600;font-size:.95rem}
@@ -333,6 +336,10 @@
       <div class="consultoria-cta-action">
         <a href="#" id="botaoPagar" class="btn btn-primary btn-lg" data-secao="investimento">Quero o Raio-X do meu salão</a>
         <p class="diagnostico-note">Pagamento seguro pelo Mercado Pago. Pronto em até 48 horas, no seu WhatsApp.</p>
+        <ul class="raiox-garantias">
+          <li><strong>Garantia de 7 dias:</strong> se o Raio-X não mostrar nada que você ainda não sabia, devolvemos os R$ 147.</li>
+          <li><strong>Vira desconto:</strong> fechou o Método BNC depois? Os R$ 147 saem da primeira mensalidade.</li>
+        </ul>
       </div>
     </div>
 
@@ -356,6 +363,8 @@
       </h2>
     </div>
     <div class="faq-list stagger">
+      <details class="faq-item fade-in-up"><summary>E se o Raio-X não me mostrar nada de novo?</summary><p>Você tem 7 dias depois da entrega para pedir o dinheiro de volta. É só responder no WhatsApp e a gente devolve os R$ 147, sem pergunta.</p></details>
+      <details class="faq-item fade-in-up"><summary>O valor é descontado se eu contratar a BNC?</summary><p>Sim. Se você fechar o Método BNC depois do Raio-X, os R$ 147 saem da primeira mensalidade.</p></details>
       <details class="faq-item fade-in-up"><summary>Quais buscas vocês medem?</summary><p>Três escolhidas a partir do serviço principal do seu salão e uma com o nome do bairro, que é a busca de maior intenção de quem já decidiu onde quer ser atendida. Se quiser trocar alguma, é só avisar no WhatsApp depois do pagamento.</p></details>
       <details class="faq-item fade-in-up"><summary>Preciso dar acesso ao meu Google?</summary><p>Não. Toda a medição é feita por fora, do jeito que a sua cliente vê. Você não entrega senha nem acesso nenhum.</p></details>
       <details class="faq-item fade-in-up"><summary>E se eu não tiver site?</summary><p>Sem problema. A parte do site vira uma leitura do que falta e do que isso está custando, e o resto do relatório continua igual.</p></details>
