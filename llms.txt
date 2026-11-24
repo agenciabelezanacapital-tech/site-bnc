@@ -224,3 +224,5 @@ O Blog BNC reúne conteúdo educativo sobre captação, conversão e gestão par
 - [Etiquetas no WhatsApp do salão: como separar conversas sem perder pendências](https://www.belezanacapital.com.br/blog/etiquetas-whatsapp-salao/): Organize etiquetas e listas no WhatsApp do salão com critérios claros para entrada, atualização e encerramento de conversas da recepção.
 
 - [O concorrente tem nota melhor no Google: o que revisar no seu salão](https://www.belezanacapital.com.br/blog/concorrente-com-nota-melhor-salao/): Saiba comparar a nota do concorrente no Google sem confundir reputação com ranking e transforme os relatos em prioridades práticas para o salão.
+
+- [Relatório de termos de pesquisa do Google Ads: como ler os dados do salão](https://www.belezanacapital.com.br/blog/relatorio-termos-pesquisa-google-ads-salao/): Entenda como analisar as buscas que acionaram os anúncios do salão, distinguir termos de palavras-chave e transformar o relatório em decisões práticas.
