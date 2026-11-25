@@ -2,6 +2,11 @@
   "timezone": "America/Sao_Paulo",
   "source_description": "Horário do status Vercel success do primeiro deploy de produção que incluiu o artigo. Publicações agendadas usam o deploy de main, nunca o preview.",
   "articles": {
+    "avaliacoes-pararam-de-chegar-salao": {
+      "published_at": "2026-11-25T11:57:35Z",
+      "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/3HmttWZiLomVzKRcyRsHS8JqTaBu",
+      "commit": "5d3154bb0b57d48fb655b587e2afa7e9c38f74a8"
+    },
     "relatorio-termos-pesquisa-google-ads-salao": {
       "published_at": "2026-11-24T11:24:05Z",
       "source": "https://vercel.com/beleza-na-capitals-projects/site-bnc/5bddJfMWC9UiTrJVZwbBUSsa9Evx",
