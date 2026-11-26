@@ -29,6 +29,13 @@
   // do artigo vale; o resto cai na chamada geral.
   var ASSUNTOS = [
     {
+      teste: /acessos-contas-marketing-salao/,
+      titulo: 'Quer organizar a operação de marketing do seu salão?',
+      texto: 'A BNC ajuda a alinhar responsabilidades, campanhas e atendimento. Converse com a equipe sobre a sua operação.',
+      botao: 'Quero organizar meu marketing',
+      pedido: 'quero ajuda para organizar a operação de marketing do meu salão'
+    },
+    {
       teste: /divergencia-estoque-salao/,
       titulo: 'Quer organizar os processos do seu salão?',
       texto: 'A BNC ajuda a revisar a rotina de gestão e definir prioridades para a operação. Converse com a equipe.',

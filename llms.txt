@@ -228,3 +228,5 @@ O Blog BNC reúne conteúdo educativo sobre captação, conversão e gestão par
 - [Relatório de termos de pesquisa do Google Ads: como ler os dados do salão](https://www.belezanacapital.com.br/blog/relatorio-termos-pesquisa-google-ads-salao/): Entenda como analisar as buscas que acionaram os anúncios do salão, distinguir termos de palavras-chave e transformar o relatório em decisões práticas.
 
 - [As avaliações do salão pararam de chegar: como descobrir onde o processo travou](https://www.belezanacapital.com.br/blog/avaliacoes-pararam-de-chegar-salao/): Confira como investigar a falta de novas avaliações no Google, testar o caminho do cliente e retomar a rotina do salão sem pressão nem promessas.
+
+- [Acessos às contas de marketing do salão: como organizar responsáveis e permissões](https://www.belezanacapital.com.br/blog/acessos-contas-marketing-salao/): Organize os acessos ao marketing do salão com um inventário de contas, responsáveis e permissões. Veja o que conferir antes de trocar equipe ou agência.
