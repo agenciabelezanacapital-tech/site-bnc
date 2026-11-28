@@ -232,3 +232,5 @@ O Blog BNC reúne conteúdo educativo sobre captação, conversão e gestão par
 - [Acessos às contas de marketing do salão: como organizar responsáveis e permissões](https://www.belezanacapital.com.br/blog/acessos-contas-marketing-salao/): Organize os acessos ao marketing do salão com um inventário de contas, responsáveis e permissões. Veja o que conferir antes de trocar equipe ou agência.
 
 - [QR code de avaliação do Google: como criar e onde colocar no salão](https://www.belezanacapital.com.br/blog/qr-code-avaliacao-google-salao/): Aprenda a obter o QR code de avaliação do Google, testar o material impresso e escolher onde colocá-lo no salão sem pressionar o cliente.
+
+- [UTM nos links do salão: como criar e conferir a marcação de campanhas](https://www.belezanacapital.com.br/blog/utm-links-campanhas-salao/): Veja como organizar UTMs nos links de campanhas do salão, padronizar nomes e testar o destino antes de divulgar, sem confundir visita com agendamento.
